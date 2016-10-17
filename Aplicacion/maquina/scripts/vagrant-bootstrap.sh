@@ -72,19 +72,33 @@ else
 	mkdir /var/www/web/public
 fi
 
-
+#Archivo de configuarición para el virtual host
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
-    DocumentRoot "/var/www/web/public"
-    <Directory "/var/www/web/public">
-        AllowOverride All
-        Require all granted
-    </Directory>
+        ServerAdmin     fenixscd@gmail.com
+        ServerName      192.168.56.20
+        ServerAlias     www.proyecto.es
+        DocumentRoot "/var/www/web/public"
+        <Directory "/var/www/web/public">
+                Options Indexes FollowSymLinks
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet  
 EOF
 )
+
 echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 
+#Avilita el moculo rewite para que funcione la configuración .htacces
+sudo a2enmod rewrite > /vagrant/vm_build.log 2>&1
+
+#Reinica el servicio para que haga efecto la configuracion
+sudo service apache2 restart > /vagrant/vm_build.log 2>&1
 
 
 echo '.'
@@ -101,13 +115,13 @@ echo '.'
 #php5enmod mcrypt #Cifrado
 
 apt-get install php5 -y
-#apt-get install php5-cli -y
-#apt-get install php5-curl -y
-#apt-get install php5-mcrypt -y
-#apt-get install php5-gd -y
-#apt-get install php5-sqlite -y
-#apt-get install php5-cgi -y
-#apt-get install php5-mysql -y
+apt-get install php5-cli -y
+apt-get install php5-curl -y
+apt-get install php5-mcrypt -y
+apt-get install php5-gd -y
+apt-get install php5-sqlite -y
+apt-get install php5-cgi -y
+apt-get install php5-mysql -y
 
 echo '.'
 echo '-------------------------------------------------------------------------------------------------'
@@ -151,12 +165,3 @@ mv composer.phar /usr/local/bin/composer
 /etc/init.d/apache2 restart
 
 echo '.'
-
-
-#apt-get -y install phpmyadmin
-
-# Instalar composer
-#curl -sS https://getcomposer.org/installer | php
-
-#Composr de forma global
-#sudo mv ~/composer.phar /usr/local/bin/composer
