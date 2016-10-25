@@ -1,7 +1,6 @@
 <?php
 namespace core\dominio;
 
-//use core\dominio\UsuarioException;
 
 class Usuario implements UsuarioInterfaz
 {
@@ -9,26 +8,6 @@ class Usuario implements UsuarioInterfaz
     private $nombreUsuario;
     private $email;
     private $password;
-
-    ///**
-    // * Usuario constructor.
-    // * @param $idUsuario
-    // * @param $nombreUsuario
-    // * @param $email
-    // * @param $password
-    // * @throws UsuarioException
-    // */
-    //public function __construct($idUsuario = null, $nombreUsuario, $email, $password)
-    //{
-    //    $this->idUsuario = $idUsuario;
-    //    $this->nombreUsuario = $nombreUsuario;
-    //    $this->email = $email;
-    //    $this->password = $password;
-
-        //if ($nombreUsuario == null || $email == null || $password == null){
-        //    throw new UsuarioException('Faltan parametros para instanciar el objeto');
-        //}
-    //}
 
     /**
      * @return mixed
