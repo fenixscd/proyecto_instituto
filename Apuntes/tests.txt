@@ -1,0 +1,11 @@
+<?php
+
+namespace tests\web;
+
+class pruebaTest extends \PHPUnit_Framework_TestCase
+{
+    public function testPrueba()
+    {
+        $this->assertTrue(false);
+    }
+}

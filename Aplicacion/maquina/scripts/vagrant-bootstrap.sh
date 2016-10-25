@@ -19,7 +19,7 @@ echo '-------------------- SISTEMA ACTUALIZADO --------------------------------'
 echo '-------------------------------------------------------------------------'
 echo '.'
 echo '-------------------------------------------------------------------------'
-echo '--------------Instalado curl---------------------------------------------'
+echo '--------------Instalado curl y git---------------------------------------'
 echo '-------------------------------------------------------------------------'
 apt-get install -y curl git
 
@@ -95,10 +95,12 @@ EOF
 echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 
 #Avilita el moculo rewite para que funcione la configuración .htacces
-sudo a2enmod rewrite > /vagrant/vm_build.log 2>&1
+sudo a2enmod rewrite
 
 #Reinica el servicio para que haga efecto la configuracion
-sudo service apache2 restart > /vagrant/vm_build.log 2>&1
+sudo service apache2 restart
+
+
 
 
 echo '.'
@@ -164,4 +166,12 @@ mv composer.phar /usr/local/bin/composer
 
 /etc/init.d/apache2 restart
 
-echo '.'
+if [ -f /vagrant/scripts/vim.sh ];then
+	echo "Sí, sí existe."
+	chmod +x /vagrant/scripts/vim.sh
+	sh /vagrant/scripts/vim/vim.sh
+else
+	echo "No, no existe"
+fi
+
+echo '........'
