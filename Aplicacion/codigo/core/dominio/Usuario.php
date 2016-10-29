@@ -1,4 +1,5 @@
 <?php
+
 namespace core\dominio;
 
 
@@ -10,7 +11,7 @@ class Usuario implements UsuarioInterfaz
     private $password;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIdUsuario()
     {
@@ -36,7 +37,7 @@ class Usuario implements UsuarioInterfaz
     }
 
     /**
-     * @param mixed $nombreUsuario
+     * @param tring $nombreUsuario
      * @return Usuario
      */
     public function setNombreUsuario($nombreUsuario)
@@ -46,7 +47,7 @@ class Usuario implements UsuarioInterfaz
     }
 
     /**
-     * @return mixed
+     * @return tring
      */
     public function getEmail()
     {
@@ -54,7 +55,7 @@ class Usuario implements UsuarioInterfaz
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      * @return Usuario
      */
     public function setEmail($email)
@@ -64,7 +65,7 @@ class Usuario implements UsuarioInterfaz
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPassword()
     {
@@ -72,7 +73,7 @@ class Usuario implements UsuarioInterfaz
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      * @return Usuario
      */
     public function setPassword($password)
@@ -93,5 +94,4 @@ class Usuario implements UsuarioInterfaz
 
         return "IdUsuario" . $idUsuario ." Usuario " . $nombreUsuario . " Email " . $email;
     }
-
 }

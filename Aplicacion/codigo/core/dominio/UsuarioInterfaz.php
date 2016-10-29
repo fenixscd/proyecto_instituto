@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Samuel
- * Date: 24/10/2016
- * Time: 19:17
- */
 
 namespace core\dominio;
-
 
 interface UsuarioInterfaz
 {
