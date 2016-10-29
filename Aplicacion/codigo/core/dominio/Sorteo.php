@@ -17,7 +17,6 @@ class Sorteo implements SorteoInterface
     private $fechaFin;
 
     /**
-     *
      * @return Usuario
      */
     public function getUsuario()
