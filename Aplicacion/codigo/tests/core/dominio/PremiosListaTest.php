@@ -11,23 +11,37 @@ use phpDocumentor\Reflection\Types\Boolean;
 
 class PremiosListaTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider testAddPremio
-     */
-    public function providerAddPremio()
+    protected $premio;
+    protected $otroPremio;
+
+    public function setUp()
     {
-        return [
-            'Es true'  => [true],
-            'Es false' => [true],
-            'Es false' => [true]
-        ];
+        $this->premio = $this->getMockBuilder(
+            'core\dominio\PremioInterface;')->getMock();
+
+        $this->premio->method('getIdPremio')->willReturn(1);
+        $this->premio->method('getNombre')->willReturn('Premio_Uno');
+        //////////////////////////////////////////////////////////////////
+
+        $this->premio = $this->getMockBuilder(
+            'core\dominio\PremioInterface;')->getMock();
+
+        $this->premio->method('getIdPremio')->willReturn(2);
+        $this->premio->method('getNombre')->willReturn('Premio_Dos');
+        //////////////////////////////////////////////////////////////////
+
+        $this->premio = $this->getMockBuilder(
+            'core\dominio\PremioInterface;')->getMock();
+
+        $this->premio->method('getIdPremio')->willReturn(2);
+        $this->premio->method('getNombre')->willReturn('Premio_Dos');
     }
 
-    /**
-     * @dataProvider providerAddPremio
-     */
-    public function testAddPremio($validar)
+
+
+    public function testAddPremioNombresDuplicados()
     {
+
         $premiosLista = new PremiosLista();
 
         $this->assertTrue($validar);

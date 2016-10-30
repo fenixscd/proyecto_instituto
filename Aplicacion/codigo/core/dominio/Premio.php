@@ -12,40 +12,42 @@ class Premio implements PremioInterface
 
     public function getIdPremio()
     {
-
+        return $this->idPremio;
     }
 
     public function getNombre()
     {
-
+        return $this->nombre;
     }
 
     public function getDescripcion()
     {
-
+        return $this->descripcion;
     }
     public function getCantidad()
     {
-
+        return $this->cantidad;
     }
 
-    public function setIdPremio()
+    public function setIdPremio(int $idPremio)
     {
-
+        $this->idPremio = $idPremio;
+        return $this;
     }
 
-    public function setNombre()
+    public function setNombre(string $nombre)
     {
-
+        $this->nombre = $nombre;
+        return $this;
     }
-    public function setDescripcion()
+    public function setDescripcion(string $descripcion)
     {
-
+        $this->descripcion = $descripcion;
+        return $this;
     }
-    public function setCantidad()
+    public function setCantidad(int $cantidad)
     {
-
+        $this->cantidad = $cantidad;
+        return $this;
     }
-
-
 }
