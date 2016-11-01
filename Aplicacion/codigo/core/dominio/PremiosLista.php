@@ -14,7 +14,7 @@ class PremiosLista
      */
     public function addPremio(Premio $premio)
     {
-
+        array_push($this->premios, $premio);
     }
 
     /**
@@ -31,7 +31,7 @@ class PremiosLista
      */
     public function countPremios()
     {
-        return 1;
+        return count($this->premios);
     }
 
 }

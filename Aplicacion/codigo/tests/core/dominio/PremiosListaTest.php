@@ -3,47 +3,52 @@
 namespace tests\core\dominio;
 
 use core\dominio\PremioInterface;
+use core\dominio\Premio;
 use core\dominio\PremiosLista;
 use PHPUnit_Framework_TestCase;
-use core\dominio\Premio;
-use phpDocumentor\Reflection\Types\Boolean;
 
 
 class PremiosListaTest extends PHPUnit_Framework_TestCase
 {
     protected $premio;
     protected $otroPremio;
+    protected $otroPremioDuplicado;
 
     public function setUp()
     {
         $this->premio = $this->getMockBuilder(
-            'core\dominio\PremioInterface;')->getMock();
+            'core\dominio\Premio')->getMock();
 
         $this->premio->method('getIdPremio')->willReturn(1);
         $this->premio->method('getNombre')->willReturn('Premio_Uno');
         //////////////////////////////////////////////////////////////////
 
-        $this->premio = $this->getMockBuilder(
-            'core\dominio\PremioInterface;')->getMock();
+        $this->otroPremio = $this->getMockBuilder(
+            'core\dominio\PremioInterface')->getMock();
 
-        $this->premio->method('getIdPremio')->willReturn(2);
-        $this->premio->method('getNombre')->willReturn('Premio_Dos');
+        $this->otroPremio->method('getIdPremio')->willReturn(2);
+        $this->otroPremio->method('getNombre')->willReturn('Premio_Dos');
         //////////////////////////////////////////////////////////////////
 
-        $this->premio = $this->getMockBuilder(
-            'core\dominio\PremioInterface;')->getMock();
+        $this->otroPremioDuplicado = $this->getMockBuilder(
+            'core\dominio\PremioInterface')->getMock();
 
-        $this->premio->method('getIdPremio')->willReturn(2);
-        $this->premio->method('getNombre')->willReturn('Premio_Dos');
+        $this->otroPremioDuplicado->method('getIdPremio')->willReturn(2);
+        $this->otroPremioDuplicado->method('getNombre')->willReturn('Premio_Dos');
+     }
+
+
+    public function testPremiosLista_AlCrear_Premios0() {
+        $premiosLista = new PremiosLista();
+        $this->assertEquals(0, $premiosLista->countPremios());
     }
 
 
-
-    public function testAddPremioNombresDuplicados()
-    {
-
+    public function testPremiosLista_addPremio_ComprobamosAñadeUnPremio() {
         $premiosLista = new PremiosLista();
 
-        $this->assertTrue($validar);
+        $premiosLista->addPremio($this->premio);
+        $this->assertEquals(1, $premiosLista->countPremios());
     }
+
 }
