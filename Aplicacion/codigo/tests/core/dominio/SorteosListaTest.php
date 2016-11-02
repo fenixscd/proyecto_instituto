@@ -16,38 +16,27 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
 
-        $this->sorteo = $this->getMockBuilder(
-            'core\dominio\Sorteo')->getMock();
 
-//         $this->sorteo->method('getIdSorteo')->willReturn(1);
-//         $this->sorteo->method('getNombreSorteo')->willReturn('Sorteo_Uno');
+        $this->sorteo = $this->getMockBuilder('core\dominio\Sorteo')->getMock();
+
+
+        $this->sorteo->method('getIdSorteo')->willReturn(1);
+        $this->sorteo->method('getNombreSorteo')->willReturn('Sorteo_Uno');
         //////////////////////////////////////////////////////////////////
 
-//         $this->sorteoDos = $this->getMockBuilder(
-//             'core\dominio\Sorteo')->getMock();
+        $this->sorteoDos = $this->getMockBuilder(
+            'core\dominio\Sorteo')->getMock();
 
-//         $this->sorteoDos->method('getIdSorteo')->willReturn(2);
-//         $this->sorteoDos->method('getSorteo')->willReturn('Usuario_Dos');
-//         //////////////////////////////////////////////////////////////////
+        $this->sorteoDos->method('getIdSorteo')->willReturn(2);
+        $this->sorteoDos->method('getNombreSorteo')->willReturn('Sorteo_dos');
+        //////////////////////////////////////////////////////////////////
 
-//         $this->sorteoDuplicado = $this->getMockBuilder(
-//             'core\dominio\Sorteo')->getMock();
+         $this->sorteoDuplicado = $this->getMockBuilder(
+             'core\dominio\Sorteo')->getMock();
 
-//         $this->sorteoDuplicado->method('getIdSorteo')->willReturn(1);
-//         $this->sorteoDuplicado->method('getNombreSorteo')->willReturn('Sorteo_Uno');
+         $this->sorteoDuplicado->method('getIdSorteo')->willReturn(1);
+        $this->sorteoDuplicado->method('getNombreSorteo')->willReturn('Duplicado');
     }
-
-
-
-//     public function provider_noAdmiteDuplicados()
-//     {
-//         return [
-//             'Verdadero 1' => [$this->sorteo],
-//             'Verdadero 2' => [$this-],
-//             'Falso' => [true],
-//         ];
-//     }
-
 
     public function testSorteoLista_AlCrear_Sorteos0() {
         $sorteosLista = new SorteosLista();
@@ -67,8 +56,10 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException core\dominio\SorteosListaException
      */
-    public function testException()
+    public function testSorteosLista_addSorte_ComprobamosNoPermiteDuplicados()
     {
-       throw new SorteosListaException("Sorteo duplicado");
+       $sorteosLista = new SorteosLista();
+       $sorteosLista->addSorteo($this->sorteo);
+       $sorteosLista->addSorteo($this->sorteoDuplicado);
     }
 }

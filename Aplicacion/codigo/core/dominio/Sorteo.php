@@ -4,16 +4,15 @@ namespace core\dominio;
 use core\dominio\Usuario;
 
 use DateTime;
+use phpDocumentor\Reflection\Types\String_;
 
 
 class Sorteo
 {
     private $idSorteo;
-    private $sorteo;
+    private $nombreSorteo;
     private $usuario;
-    private $nombre;
     private $descripcion;
-    private $premios;
     private $fechaInicio;
     private $fechaFin;
 
@@ -26,14 +25,17 @@ class Sorteo
         return $this->idSorteo;
     }
 
-    public function getSorteo()
+    /**
+     * @return string
+     */
+    public function getNombreSorteo()
     {
-        return $this->getSorteo();
+        return $this->getNombreSorteo();
     }
 
     /**
      *
-     * @return string
+     * @return Usuario
      */
     public function getUsuario()
     {
@@ -77,22 +79,32 @@ class Sorteo
     }
 
     /**
+     * @param int idSorteo
+     * @return Sorteo
+     */
+    public function setIdSorteo (int $idSorteo)
+    {
+        $this->idSorteo = $idSorteo;
+        return  $this;
+    }
+
+    /**
+     * @param string nombreSorteo
+     * @return Usuario
+     */
+    public function setNombreSorteo(String_ $nombreSorteo)
+    {
+        $this->nombreSorteo = $nombreSorteo;
+        return $this;
+    }
+
+    /**
      * @param Usuario usuario
      * @return Sorteo
      */
     public function setUsuario(Usuario $usuario)
     {
         $this->usuario = $usuario;
-        return $this;
-    }
-
-    /**
-     * @param String nombre
-     * @return Usuario
-     */
-    public function setNombre(string $nombre)
-    {
-        $this->nombre = nombre;
         return $this;
     }
 

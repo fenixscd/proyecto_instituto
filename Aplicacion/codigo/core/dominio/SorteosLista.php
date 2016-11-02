@@ -3,7 +3,7 @@
 namespace core\dominio;
 
 use core\dominio\Sorteo;
-use Exception;
+use core\dominio\SorteosListaException;
 
 class SorteosLista
 {
@@ -17,7 +17,7 @@ class SorteosLista
     public function addSorteo(Sorteo $sorteo)
     {
         if ($this->isDuplicado($sorteo)){
-            throw new Exception("Sorteo duplicado");
+            throw new SorteosListaException("Sorteo duplicado");
         }
         array_push($this->sorteos, $sorteo);
     }
@@ -32,7 +32,6 @@ class SorteosLista
 
     /**
      * Se considera duplicado si contiene el mismo idSorteo
-     * o el mismo nombreSorteo.
      */
     private function isDuplicado(Sorteo $sorteo)
     {
@@ -41,9 +40,8 @@ class SorteosLista
 
         foreach ($this->sorteos as $valor){
             $coinceId = $valor->getIdSorteo() === $sorteo->getIdSorteo();
-            $coincideNombreSorteo = $valor->getNombreSorteo() === $sorteo->getNombreSorteo();
 
-            if ($coinceId || $coincideNombreSorteo) return true;
+            if ($coinceId) return true;
         }
         return false;
     }
