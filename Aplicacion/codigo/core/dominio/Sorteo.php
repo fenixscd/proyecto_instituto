@@ -8,7 +8,8 @@ use DateTime;
 
 class Sorteo
 {
-    private $idUsuario;
+    private $idSorteo;
+    private $sorteo;
     private $usuario;
     private $nombre;
     private $descripcion;
@@ -20,9 +21,14 @@ class Sorteo
     /**
      * @return int
      */
-    public function getIdUsuario()
+    public function getIdSorteo()
     {
-        return $this->idUsuario;
+        return $this->idSorteo;
+    }
+
+    public function getSorteo()
+    {
+        return $this->getSorteo();
     }
 
     /**
