@@ -2,10 +2,11 @@
 
 namespace tests\core\dominio;
 
+use PHPUnit_Framework_TestCase;
 use core\dominio\PremioInterface;
 use core\dominio\Premio;
 use core\dominio\PremiosLista;
-use PHPUnit_Framework_TestCase;
+
 
 
 class PremiosListaTest extends PHPUnit_Framework_TestCase
@@ -31,7 +32,7 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
         //////////////////////////////////////////////////////////////////
 
         $this->otroPremioDuplicado = $this->getMockBuilder(
-            'core\dominio\PremioInterface')->getMock();
+            'core\dominio\Premio')->getMock();
 
         $this->otroPremioDuplicado->method('getIdPremio')->willReturn(2);
         $this->otroPremioDuplicado->method('getNombre')->willReturn('Premio_Dos');

@@ -1,14 +1,14 @@
 <?php
 
 namespace core\dominio;
+use core\dominio\Usuario;
 
 use DateTime;
-use phpDocumentor\Reflection\Types\This;
 
 
-class Sorteo implements SorteoInterface
+class Sorteo
 {
-
+    private $idUsuario;
     private $usuario;
     private $nombre;
     private $descripcion;
@@ -16,30 +16,40 @@ class Sorteo implements SorteoInterface
     private $fechaInicio;
     private $fechaFin;
 
+
     /**
-     * @return Usuario
+     * @return int
+     */
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
+
+    /**
+     *
+     * @return string
      */
     public function getUsuario()
     {
-        $this->usuario;
+        return $this->usuario;
     }
 
     /**
      *
-     * @return Usuario
+     * @return string
      */
     public function getNombre()
     {
-        $this->nombre;
+        return  $this->nombre;
     }
 
     /**
      *
-     * @return Usuario
+     * @return string
      */
     public function getDescripcion()
     {
-        $this->descripcion;
+        return $this->descripcion;
     }
 
     /**
@@ -48,7 +58,7 @@ class Sorteo implements SorteoInterface
      */
     public function getFechaInicio()
     {
-        $this->fechaInicio;
+        return $this->fechaInicio;
     }
 
     /**
@@ -57,21 +67,21 @@ class Sorteo implements SorteoInterface
      */
     public function getFechaFin()
     {
-        $this->fechaFin;
+        return $this->fechaFin;
     }
 
     /**
-     * @param Usuario
+     * @param Usuario usuario
      * @return Sorteo
      */
-    public function setUsuario($usuario)
+    public function setUsuario(Usuario $usuario)
     {
         $this->usuario = $usuario;
         return $this;
     }
 
     /**
-     * @param String
+     * @param String nombre
      * @return Usuario
      */
     public function setNombre(string $nombre)
@@ -81,7 +91,7 @@ class Sorteo implements SorteoInterface
     }
 
     /**
-     * @param String
+     * @param String descripcion
      * @return Usuario
      */
     public function setDescripcion(string $descripcion)
@@ -91,7 +101,7 @@ class Sorteo implements SorteoInterface
     }
 
     /**
-     * @param DateTime
+     * @param DateTime fechaInicio
      * @return Usuario
      */
     public function setFechaInicio( DateTime $fechaInicio)
