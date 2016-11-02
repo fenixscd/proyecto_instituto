@@ -1,10 +1,10 @@
 <?php
 
 namespace core\dominio;
-use Exception;
+//use Exception;
 
 
-class SorteoListaException extends Exception {
+class SorteosListaException extends \Exception {
     public function __construct($message = null, $code = 0, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }

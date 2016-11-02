@@ -5,7 +5,7 @@ namespace tests\core\dominio;
 use PHPUnit_Framework_TestCase;
 use core\dominio\SorteosLista;
 use core\dominio\Sorteo;
-use core\dominio\SorteoListaException;
+use core\dominio\SorteosListaException;
 
 class SorteosListaTest extends PHPUnit_Framework_TestCase
 {
@@ -65,10 +65,10 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * @expectedException SorteoListaException
+     * @expectedException Exception
      */
     public function testException()
     {
-        throw new SorteoListaException("The item doesn't exists in cart");
+       throw new SorteosListaException("Sorteo duplicado");
     }
 }
