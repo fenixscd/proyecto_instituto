@@ -65,7 +65,7 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * @expectedException Exception
+     * @expectedException core\dominio\SorteosListaException
      */
     public function testException()
     {
