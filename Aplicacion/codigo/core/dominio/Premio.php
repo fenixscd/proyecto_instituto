@@ -1,12 +1,13 @@
 <?php
 
 namespace core\dominio;
+use core\dominio\PremioInterface;
 
 
 class Premio implements PremioInterface
 {
     private $idPremio;
-    private $nombre;
+    private $nombrePremio;
     private $descripcion;
     private $cantidad;
 
@@ -15,9 +16,9 @@ class Premio implements PremioInterface
         return $this->idPremio;
     }
 
-    public function getNombre()
+    public function getNombrePremio()
     {
-        return $this->nombre;
+        return $this->nombrePremio;
     }
 
     public function getDescripcion()
@@ -35,9 +36,9 @@ class Premio implements PremioInterface
         return $this;
     }
 
-    public function setNombre(string $nombre)
+    public function setNombreSorteo(string $nombrePremio)
     {
-        $this->nombre = $nombre;
+        $this->nombrePremio = $nombrePremio;
         return $this;
     }
     public function setDescripcion(string $descripcion)

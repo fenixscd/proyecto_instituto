@@ -12,7 +12,7 @@ interface PremioInterface
     /**
      * @return string
      */
-    public function getNombre();
+    public function getNombrePremio();
 
     /**
      * @return string
@@ -34,10 +34,10 @@ interface PremioInterface
     public function setIdPremio(int $idPremio);
 
     /**
-     * @param string $nombre
+     * @param string $nombrePremio
      * @return PremioInterface
      */
-    public function setNombre(string $nombre);
+    public function setNombreSorteo(string $nombrePremio);
 
     /**
      * @param string $descripcion

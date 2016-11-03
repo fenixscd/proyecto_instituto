@@ -18,15 +18,6 @@ class PremiosLista
     }
 
     /**
-     *
-     * @param Premio $premio
-     */
-    public function rmPremio(Premio $premio)
-    {
-
-    }
-
-    /**
      * @return number
      */
     public function countPremios()

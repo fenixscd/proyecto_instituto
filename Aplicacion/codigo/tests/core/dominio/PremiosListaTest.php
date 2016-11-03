@@ -21,21 +21,21 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
             'core\dominio\Premio')->getMock();
 
         $this->premio->method('getIdPremio')->willReturn(1);
-        $this->premio->method('getNombre')->willReturn('Premio_Uno');
+        $this->premio->method('getNombrePremio')->willReturn('Premio_Uno');
         //////////////////////////////////////////////////////////////////
 
         $this->otroPremio = $this->getMockBuilder(
             'core\dominio\PremioInterface')->getMock();
 
         $this->otroPremio->method('getIdPremio')->willReturn(2);
-        $this->otroPremio->method('getNombre')->willReturn('Premio_Dos');
+        $this->otroPremio->method('getNombrePremio')->willReturn('Premio_Dos');
         //////////////////////////////////////////////////////////////////
 
         $this->otroPremioDuplicado = $this->getMockBuilder(
             'core\dominio\Premio')->getMock();
 
         $this->otroPremioDuplicado->method('getIdPremio')->willReturn(2);
-        $this->otroPremioDuplicado->method('getNombre')->willReturn('Premio_Dos');
+        $this->otroPremioDuplicado->method('getNombrePremio')->willReturn('Premio_Dos');
      }
 
 

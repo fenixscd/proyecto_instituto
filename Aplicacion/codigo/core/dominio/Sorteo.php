@@ -1,13 +1,13 @@
 <?php
 
 namespace core\dominio;
+
 use core\dominio\Usuario;
-
+use core\dominio\SorteoInterfacez;
 use DateTime;
-use phpDocumentor\Reflection\Types\String_;
 
 
-class Sorteo
+class Sorteo implements SorteoInterfacez
 {
     private $idSorteo;
     private $nombreSorteo;
@@ -43,17 +43,6 @@ class Sorteo
         return $this->usuario;
     }
 
-
-
-    /**
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return  $this->nombre;
-    }
-
     /**
      *
      * @return string
@@ -61,6 +50,11 @@ class Sorteo
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    public function getListaPremios()
+    {
+        return $this->listaPremios;
     }
 
     /**
@@ -95,7 +89,7 @@ class Sorteo
      * @param string nombreSorteo
      * @return Usuario
      */
-    public function setNombreSorteo(String_ $nombreSorteo)
+    public function setNombreSorteo(string $nombreSorteo)
     {
         $this->nombreSorteo = $nombreSorteo;
         return $this;
@@ -112,7 +106,7 @@ class Sorteo
     }
 
     /**
-     * @param String descripcion
+     * @param string descripcion
      * @return Usuario
      */
     public function setDescripcion(string $descripcion)
@@ -122,20 +116,20 @@ class Sorteo
     }
 
     /**
-     * @param DateTime fechaInicio
+     * @param string fechaInicio
      * @return Usuario
      */
-    public function setFechaInicio( DateTime $fechaInicio)
+    public function setFechaInicio(string $fechaInicio)
     {
         $this->fechaInicio = $fechaInicio;
         return $this;
     }
 
     /**
-     * @param DateTime fechaFin
+     * @param string fechaFin
      * @return Usuario
      */
-    public function setFechaFin(DateTime $fechaFin)
+    public function setFechaFin(string $fechaFin)
     {
         $this->fechaFin = $fechaFin;
         return $this;
