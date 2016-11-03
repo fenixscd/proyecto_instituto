@@ -43,6 +43,8 @@ class Sorteo
         return $this->usuario;
     }
 
+
+
     /**
      *
      * @return string
