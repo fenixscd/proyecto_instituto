@@ -13,6 +13,7 @@ class Sorteo
     private $nombreSorteo;
     private $usuario;
     private $descripcion;
+    private $listaPremios;
     private $fechaInicio;
     private $fechaFin;
 
