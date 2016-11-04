@@ -25,6 +25,7 @@ class Premio implements PremioInterface
     {
         return $this->descripcion;
     }
+
     public function getCantidad()
     {
         return $this->cantidad;
@@ -49,6 +50,12 @@ class Premio implements PremioInterface
     public function setCantidad(int $cantidad)
     {
         $this->cantidad = $cantidad;
+        return $this;
+    }
+
+    public function addCantidad(int $cantidad)
+    {
+        $this->cantidad = $this->cantidad + $cantidad;
         return $this;
     }
 }

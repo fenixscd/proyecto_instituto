@@ -5,7 +5,6 @@ namespace tests\core\dominio;
 use PHPUnit_Framework_TestCase;
 use core\dominio\SorteosLista;
 use core\dominio\Sorteo;
-use core\dominio\SorteosListaException;
 
 class SorteosListaTest extends PHPUnit_Framework_TestCase
 {
@@ -43,7 +42,6 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(0, $sorteosLista->countSorteos());
     }
-
 
      public function testSorteosLista_addSorte_ComprobamosAñadeUnSorteo() {
          $sorteosLista = new SorteosLista();

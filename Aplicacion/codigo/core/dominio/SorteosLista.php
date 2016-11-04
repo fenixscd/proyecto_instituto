@@ -3,7 +3,6 @@
 namespace core\dominio;
 
 use core\dominio\Sorteo;
-use core\dominio\SorteosListaException;
 
 class SorteosLista
 {

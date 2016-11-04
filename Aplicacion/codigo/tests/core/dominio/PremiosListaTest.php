@@ -22,13 +22,15 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
 
         $this->premio->method('getIdPremio')->willReturn(1);
         $this->premio->method('getNombrePremio')->willReturn('Premio_Uno');
+        $this->premio->method('getCantidad')->willReturn(1);
         //////////////////////////////////////////////////////////////////
 
         $this->otroPremio = $this->getMockBuilder(
-            'core\dominio\PremioInterface')->getMock();
+            'core\dominio\Premio')->getMock();
 
         $this->otroPremio->method('getIdPremio')->willReturn(2);
         $this->otroPremio->method('getNombrePremio')->willReturn('Premio_Dos');
+        $this->otroPremio->method('getCantidad')->willReturn(1);
         //////////////////////////////////////////////////////////////////
 
         $this->otroPremioDuplicado = $this->getMockBuilder(
@@ -36,20 +38,34 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
 
         $this->otroPremioDuplicado->method('getIdPremio')->willReturn(2);
         $this->otroPremioDuplicado->method('getNombrePremio')->willReturn('Premio_Dos');
-     }
-
-
-    public function testPremiosLista_AlCrear_Premios0() {
-        $premiosLista = new PremiosLista();
-        $this->assertEquals(0, $premiosLista->countPremios());
+        $this->otroPremioDuplicado->method('getCantidad')->willReturn(1);
     }
 
 
-    public function testPremiosLista_addPremio_ComprobamosAñadeUnPremio() {
+    public function testPremiosLista_AlCrear_Premios0()
+    {
+        $premiosLista = new PremiosLista();
+        $this->assertEquals(0, $premiosLista->getNumeroDeLineasDePremio());
+    }
+
+
+    public function testPremiosLista_addPremio_ComprobamosAñadeUnPremio()
+    {
         $premiosLista = new PremiosLista();
 
         $premiosLista->addPremio($this->premio);
-        $this->assertEquals(1, $premiosLista->countPremios());
+        $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
     }
 
+    public function testPremiosLista_addPremio_ComprobarSiSumaPremio()
+    {
+        $premiosLista = new PremiosLista();
+        $premiosLista->addPremio($this->premio);
+        $premiosLista->addPremio($this->premio);
+
+        $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios());
+        $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
+
+
+    }
 }

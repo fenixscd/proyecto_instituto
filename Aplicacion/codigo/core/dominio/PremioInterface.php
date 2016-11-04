@@ -26,7 +26,6 @@ interface PremioInterface
 
 
 
-
     /**
      * @param int
      * @return PremioInterface
@@ -50,4 +49,10 @@ interface PremioInterface
      * @return PremioInterface
      */
     public function setCantidad(int $cantidad);
+
+    /**
+     * @param int $cantidad
+     * @return PremioInterface
+     */
+    public function addCantidad(int $cantidad);
 }
