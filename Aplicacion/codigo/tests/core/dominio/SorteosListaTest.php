@@ -5,7 +5,6 @@ namespace tests\core\dominio;
 use PHPUnit_Framework_TestCase;
 use core\dominio\SorteosLista;
 use core\dominio\Sorteo;
-use core\dominio\SorteoInterface;
 use core\dominio\SorteosListaException;
 
 class SorteosListaTest extends PHPUnit_Framework_TestCase
@@ -51,16 +50,5 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
 
         $sorteosLista->addSorteo($this->sorteo);
         $this->assertEquals(1, $sorteosLista->countSorteos());
-    }
-
-
-    /**
-     * @expectedException core\dominio\SorteosListaException
-     */
-    public function testSorteosLista_addSorte_ComprobamosNoPermiteDuplicados()
-    {
-       $sorteosLista = new SorteosLista();
-       $sorteosLista->addSorteo($this->sorteo);
-       $sorteosLista->addSorteo($this->sorteoDuplicado);
     }
 }
