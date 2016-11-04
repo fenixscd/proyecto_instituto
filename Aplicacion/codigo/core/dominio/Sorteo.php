@@ -3,11 +3,11 @@
 namespace core\dominio;
 
 use core\dominio\Usuario;
-use core\dominio\SorteoInterfacez;
+use core\dominio\SorteoInterface;
 use DateTime;
 
 
-class Sorteo implements SorteoInterfacez
+class Sorteo implements SorteoInterface
 {
     private $idSorteo;
     private $nombreSorteo;

@@ -5,6 +5,7 @@ namespace tests\core\dominio;
 use PHPUnit_Framework_TestCase;
 use core\dominio\SorteosLista;
 use core\dominio\Sorteo;
+use core\dominio\SorteoInterface;
 use core\dominio\SorteosListaException;
 
 class SorteosListaTest extends PHPUnit_Framework_TestCase

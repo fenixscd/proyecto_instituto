@@ -2,7 +2,7 @@
 namespace core\dominio;
 
 
-interface SorteoInterfacez
+interface SorteoInterface
 {
     /**
      * @return int

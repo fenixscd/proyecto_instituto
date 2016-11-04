@@ -14,7 +14,7 @@ class SorteosLista
      * @param Sorteo $sorteo
      * @return \core\dominio\Sorteo
      */
-    public function addSorteo(Sorteo $sorteo)
+    public function addSorteo(SorteoInterface $sorteo)
     {
         if ($this->isDuplicado($sorteo)){
             throw new SorteosListaException("Sorteo duplicado");
