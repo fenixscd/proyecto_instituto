@@ -55,11 +55,7 @@ class Premio implements PremioInterface
 
     public function addCantidad(int $cantidad)
     {
-        echo "Metodo addCantidad \n";
-        echo "Cantidad a sumar $cantidad";
-        echo "Cantidad actual del premio ".$this->cantidad;
         $this->cantidad = $this->cantidad + $cantidad;
-        echo "Despues de operar ".$this->cantidad;
         return $this;
     }
 }

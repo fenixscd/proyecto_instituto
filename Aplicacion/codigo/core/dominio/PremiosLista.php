@@ -20,18 +20,9 @@ class PremiosLista
             array_push($this->premios, $premio);
 
         }else{
-            echo "Posicion repetida $posicionRepetida \n";
             $premioSeleccionado = $this->premios[$posicionRepetida];
-            echo "Dentro de verdader sumo la cantidad especificada \n";
-            echo "\n";
-            echo "Valor sumar " . $cantidadAñadir;
-            echo "\n";
             $premioSeleccionado->addCantidad($cantidadAñadir);
-            echo "Valor valor almacenado " . $premioSeleccionado->getCantidad();
-            echo "\n";
-
         }
-
     }
 
     /**
@@ -46,7 +37,6 @@ class PremiosLista
     {
         $totalPremios = 0;
         foreach ($this->premios as $i => $valor){
-            echo  "Pasada $i valor " .$this->premios[$i]->getCantidad()."\n";
             $totalPremios = $totalPremios + $this->premios[$i]->getCantidad();
         }
         return $totalPremios;
@@ -59,8 +49,6 @@ class PremiosLista
             if ($coinceNombre) return $i;
         }
         return false;
-
-
     }
 
 }
