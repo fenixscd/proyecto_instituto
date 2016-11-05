@@ -16,18 +16,13 @@ class PremiosLista
         $posicionRepetida = $this->getPremioRepetido($premio);
         $cantidadAñadir = $premio->getCantidad();
 
-        echo "Posicion repetida $posicionRepetida \n";
-
         if ($posicionRepetida === false){
             array_push($this->premios, $premio);
-            echo "Dentro de falso\n";
 
         }else{
+            echo "Posicion repetida $posicionRepetida \n";
             $premioSeleccionado = $this->premios[$posicionRepetida];
             echo "Dentro de verdader sumo la cantidad especificada \n";
-
-
-            echo "Valor actual " . $premioSeleccionado->getCantidad();
             echo "\n";
             echo "Valor sumar " . $cantidadAñadir;
             echo "\n";
