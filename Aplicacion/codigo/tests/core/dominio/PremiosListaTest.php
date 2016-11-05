@@ -60,11 +60,16 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
     {
         $premiosLista = new PremiosLista();
         $premio = new Premio();
+        $premioDuplicado = new Premio();
 
         $premio ->setNombreSorteo('Primer premio')
-                ->setCantidad(1);
+        ->setCantidad(1);
 
-        $premiosLista->addPremio($premio);
+        $premioDuplicado ->setNombreSorteo('Primer premio')
+        ->setCantidad(1);
+
+
+        $premiosLista->addPremio($premioDuplicado);
         $premiosLista->addPremio($premio);
 
        $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios(),"Numero_total_de_premios");
