@@ -23,10 +23,18 @@ class PremiosLista
             echo "Dentro de falso\n";
 
         }else{
+            $premioSeleccionado = $this->premios[$posicionRepetida];
+            echo "Dentro de verdader sumo la cantidad especificada \n";
 
 
-            $this->premios[$posicionRepetida]->addCantidad($cantidadAñadir);
-            echo "Dentro de verdader \n";
+            echo "Valor actual " . $premioSeleccionado->getCantidad();
+            echo "\n";
+            echo "Valor sumar " . $cantidadAñadir;
+            echo "\n";
+            $premioSeleccionado->addCantidad($cantidadAñadir);
+            echo "Valor valor almacenado " . $premioSeleccionado->getCantidad();
+            echo "\n";
+
         }
 
     }
