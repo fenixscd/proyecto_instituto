@@ -16,11 +16,17 @@ class PremiosLista
         $posicionRepetida = $this->getPremioRepetido($premio);
         $cantidadAñadir = $premio->getCantidad();
 
-        if ($posicionRepetida){
-           $this->premios[$posicionRepetida]->addCantidad($cantidadAñadir);
+        echo "Posicion repetida $posicionRepetida \n";
+
+        if ($posicionRepetida === false){
+            array_push($this->premios, $premio);
+            echo "Dentro de falso\n";
 
         }else{
-            array_push($this->premios, $premio);
+
+
+            $this->premios[$posicionRepetida]->addCantidad($cantidadAñadir);
+            echo "Dentro de verdader \n";
         }
 
     }
@@ -37,7 +43,8 @@ class PremiosLista
     {
         $totalPremios = 0;
         foreach ($this->premios as $i => $valor){
-            $totalPremios = $totalPremios + $this->premios[$i];
+            echo  "Pasada $i valor " .$this->premios[$i]->getCantidad()."\n";
+            $totalPremios = $totalPremios + $this->premios[$i]->getCantidad();
         }
         return $totalPremios;
     }

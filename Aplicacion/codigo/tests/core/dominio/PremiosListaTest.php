@@ -42,20 +42,20 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
     }
 
 
-    public function testPremiosLista_AlCrear_Premios0()
-    {
-        $premiosLista = new PremiosLista();
-        $this->assertEquals(0, $premiosLista->getNumeroDeLineasDePremio());
-    }
+//     public function testPremiosLista_AlCrear_Premios0()
+//     {
+//         $premiosLista = new PremiosLista();
+//         $this->assertEquals(0, $premiosLista->getNumeroDeLineasDePremio());
+//     }
 
 
-    public function testPremiosLista_addPremio_ComprobamosAñadeUnPremio()
-    {
-        $premiosLista = new PremiosLista();
+//     public function testPremiosLista_addPremio_ComprobamosAñadeUnPremio()
+//     {
+//         $premiosLista = new PremiosLista();
 
-        $premiosLista->addPremio($this->premio);
-        $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
-    }
+//         $premiosLista->addPremio($this->premio);
+//         $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
+//     }
 
     public function testPremiosLista_addPremio_ComprobarSiSumaPremio()
     {
@@ -63,7 +63,7 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
         $premiosLista->addPremio($this->premio);
         $premiosLista->addPremio($this->premio);
 
-        $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios());
+        $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios(),"Numero_total_de_premios");
         $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
 
 
