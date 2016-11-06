@@ -22,22 +22,6 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
         $this->premio->method('getIdPremio')->willReturn(1);
         $this->premio->method('getNombrePremio')->willReturn('Premio_Uno');
         $this->premio->method('getCantidad')->willReturn(1);
-        //////////////////////////////////////////////////////////////////
-
-        $this->otroPremio = $this->getMockBuilder(
-            'core\dominio\Premio')->getMock();
-
-        $this->otroPremio->method('getIdPremio')->willReturn(2);
-        $this->otroPremio->method('getNombrePremio')->willReturn('Premio_Dos');
-        $this->otroPremio->method('getCantidad')->willReturn(1);
-        //////////////////////////////////////////////////////////////////
-
-        $this->otroPremioDuplicado = $this->getMockBuilder(
-            'core\dominio\Premio')->getMock();
-
-        $this->otroPremioDuplicado->method('getIdPremio')->willReturn(2);
-        $this->otroPremioDuplicado->method('getNombrePremio')->willReturn('Premio_Dos');
-        $this->otroPremioDuplicado->method('getCantidad')->willReturn(1);
     }
 
 
@@ -68,11 +52,10 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
         $premioDuplicado ->setNombreSorteo('Primer premio')
         ->setCantidad(1);
 
-
         $premiosLista->addPremio($premioDuplicado);
         $premiosLista->addPremio($premio);
 
-       $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios(),"Numero_total_de_premios");
-       $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
+        $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios(),"Numero_total_de_premios");
+        $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
     }
 }

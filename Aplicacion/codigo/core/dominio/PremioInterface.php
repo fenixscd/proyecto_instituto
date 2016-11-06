@@ -55,4 +55,6 @@ interface PremioInterface
      * @return PremioInterface
      */
     public function addCantidad(int $cantidad);
+
+
 }

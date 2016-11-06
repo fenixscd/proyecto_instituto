@@ -11,15 +11,15 @@ class PremiosLista
     /**
      * @param Premio $premio
      */
-    public function addPremio(Premio $premio)
+    public function addPremio(PremioInterface $premio)
     {
         $posicionRepetida = $this->getPremioRepetido($premio);
-        $cantidadAñadir = $premio->getCantidad();
 
         if ($posicionRepetida === false){
             array_push($this->premios, $premio);
 
         }else{
+            $cantidadAñadir = $premio->getCantidad();
             $premioSeleccionado = $this->premios[$posicionRepetida];
             $premioSeleccionado->addCantidad($cantidadAñadir);
         }
@@ -33,6 +33,10 @@ class PremiosLista
         return count($this->premios);
     }
 
+    /**
+     *
+     * @return int
+     */
     public function getNumeroTotalDePremios()
     {
         $totalPremios = 0;
@@ -42,6 +46,11 @@ class PremiosLista
         return $totalPremios;
     }
 
+    /**
+     *
+     * @param PremioInterface $premio
+     * @return int|boolean
+     */
     private function getPremioRepetido(PremioInterface $premio)
     {
         foreach ($this->premios as $i => $valor){
@@ -50,5 +59,12 @@ class PremiosLista
         }
         return false;
     }
+    /**
+     * @param PremioInterface $premio
+     * @param int $cantidad
+     */
+    public function rmPremio(PremioInterface $premio, int $cantidad = 1)
+    {
 
+    }
 }
