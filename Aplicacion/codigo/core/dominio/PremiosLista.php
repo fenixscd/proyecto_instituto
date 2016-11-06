@@ -72,8 +72,16 @@ class PremiosLista
         }
 
         $posicion = $this->getPremioRepetido($premio);
+        echo "\la Posicion ha borar es " . $posicion . "\n";
+        if ($posicion === false){
 
-        $this->premios[$posicion]->rmCantidad($cantidad);
+            throw new PremioException("El Premio no existe");
+        }else{
+            $this->premios[$posicion]->rmCantidad($cantidad);
+        }
+
+
+
 
     }
 }
