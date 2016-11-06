@@ -85,7 +85,7 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException core\dominio\PremioException
+     * @expectedException core\dominio\PremiosListaException
      */
     public function testPremiosLista_rmPremio_siLaCantidadEsMenorOIgualA0()
     {
@@ -95,7 +95,7 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException core\dominio\PremioException
+     * @expectedException core\dominio\PremiosListaException
      */
     public function testPremiosLista_rmPremio_siNoExisteElPremio()
     {
@@ -104,15 +104,55 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
         $premioBorrar = new Premio();
 
         $premio ->setNombreSorteo('Primer premio')
+                ->setCantidad(2);
+
+        $premioBorrar   ->setNombreSorteo('Primer prem')
+                        ->setCantidad(1);
+
+        $premiosLista->addPremio($premio);
+        $premiosLista->rmPremio($premioBorrar, 1);
+    }
+
+    /**
+     * @expectedException core\dominio\PremiosListaException
+     */
+    public function testPremiosLista_rmPremio_siNoHaySuficientesPremios()
+    {
+$premiosLista = new PremiosLista();
+        $premio = new Premio();
+        $premioBorrar = new Premio();
+
+        $premio ->setNombreSorteo('Primer premio')
         ->setCantidad(2);
 
-        $premioBorrar ->setNombreSorteo('Primer prem')
+        $premioBorrar   ->setNombreSorteo('Primer prem')
         ->setCantidad(1);
 
         $premiosLista->addPremio($premio);
+        $premiosLista->rmPremio($premioBorrar, 5);
+    }
 
-        $premiosLista->rmPremio($premioBorrar, 1);
 
+    public function testPremiosLista_rmPremio_siSeBorraLaLineaCompleta()
+    {
+        $premiosLista = new PremiosLista();
+        $premio = new Premio();
+        $premioDos = new Premio();
+        $premioBorrar = new Premio();
+
+        $premio ->setNombreSorteo('Primer premio')
+        ->setCantidad(2);
+
+        $premioDos ->setNombreSorteo('Primer dos')
+        ->setCantidad(2);
+
+        $premioBorrar   ->setNombreSorteo('Primer premio')
+        ->setCantidad(2);
+
+        $premiosLista->addPremio($premio);
+        $premiosLista->rmPremio($premioBorrar, 5);
+
+        $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio(),"rmPremio despues de borrar");
     }
 
 }

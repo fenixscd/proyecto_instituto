@@ -4,6 +4,7 @@ namespace core\dominio;
 
 use core\dominio\Premio;
 use core\dominio\PremioException;
+use core\dominio\PremiosListaException;
 
 class PremiosLista
 {
@@ -14,15 +15,14 @@ class PremiosLista
      */
     public function addPremio(PremioInterface $premio)
     {
-        $posicionRepetida = $this->getPremioRepetido($premio);
-
-        if ($posicionRepetida === false){
-            array_push($this->premios, $premio);
-
-        }else{
+        try {
+            $posicionRepetida = $this->buscarPosicionPremio($premio);
             $cantidadAñadir = $premio->getCantidad();
             $premioSeleccionado = $this->premios[$posicionRepetida];
             $premioSeleccionado->addCantidad($cantidadAñadir);
+
+        } catch (PremiosListaException $e) {
+            array_push($this->premios, $premio);
         }
     }
 
@@ -35,8 +35,8 @@ class PremiosLista
     }
 
     /**
-     *
      * @return int
+     * @throws PremioException
      */
     public function getNumeroTotalDePremios()
     {
@@ -50,38 +50,45 @@ class PremiosLista
     /**
      *
      * @param PremioInterface $premio
-     * @return int|boolean
+     * @return int
+     * PremiosListaException
      */
-    private function getPremioRepetido(PremioInterface $premio)
+    private function buscarPosicionPremio(PremioInterface $premio)
     {
         foreach ($this->premios as $i => $valor){
             $coinceNombre = $valor->getNombrePremio() === $premio->getNombrePremio();
             if ($coinceNombre) return $i;
         }
-        return false;
+        throw new PremiosListaException("El premio especificado no existe");
     }
+
     /**
      * @param PremioInterface $premio
      * @param int $cantidad
-     * @throws PremioException
+     * @throws PremiosListaException
      */
     public function rmPremio(PremioInterface $premio, int $cantidad = 1)
     {
         if ($cantidad<0){
-            throw new PremioException("La cantidad tiene que ser mayor que 0");
+            throw new PremiosListaException("La cantidad tiene que ser mayor que 0");
         }
 
-        $posicion = $this->getPremioRepetido($premio);
-        echo "\la Posicion ha borar es " . $posicion . "\n";
-        if ($posicion === false){
+        $posicion = $this->buscarPosicionPremio($premio);
+        $cantidadContienePremio = $this->premios[$posicion]->getDescripcion();
 
-            throw new PremioException("El Premio no existe");
+        $suficientesParaBorrar = $cantidad <= $cantidadContienePremio;
+
+        if ($suficientesParaBorrar){
+            throw new PremiosListaException("No hay tantos premios de ese tipo para eliminar");
+        }
+
+        $borroLineaCompleta = $cantidadContienePremio === $cantidad;
+        if ($borroLineaCompleta){
+            // elimino la linea del array;
+            unset($this->premios[$posicion]);
         }else{
             $this->premios[$posicion]->rmCantidad($cantidad);
         }
-
-
-
 
     }
 }
