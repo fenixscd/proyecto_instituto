@@ -58,4 +58,32 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $premiosLista->getNumeroTotalDePremios(),"Numero_total_de_premios");
         $this->assertEquals(1, $premiosLista->getNumeroDeLineasDePremio());
     }
+
+    public function testPemiosLista_rmPremio_siExisteYhayMasDeUno()
+    {
+        $premiosLista = new PremiosLista();
+        $premio = new Premio();
+        $premioDos = new Premio();
+        $premioBorrar = new Premio();
+
+        $premio ->setNombreSorteo('Primer premio')
+        ->setCantidad(2);
+
+        $premioDos ->setNombreSorteo('Primer dos')
+        ->setCantidad(2);
+
+        $premioBorrar ->setNombreSorteo('Primer premio')
+        ->setCantidad(1);
+
+        $premiosLista->addPremio($premio);
+        $premiosLista->addPremio($premioDos);
+
+        $premiosLista->rmPremio($premioBorrar, 1);
+
+        $this->assertEquals(3, $premiosLista->getNumeroTotalDePremios(),"rmPremio despues de borrar");
+        $this->assertEquals(2, $premiosLista->getNumeroDeLineasDePremio(),"rmPremio despues de borrar");
+
+    }
+
+
 }

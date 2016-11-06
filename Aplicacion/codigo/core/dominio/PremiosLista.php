@@ -65,6 +65,9 @@ class PremiosLista
      */
     public function rmPremio(PremioInterface $premio, int $cantidad = 1)
     {
+        $posicion = $this->getPremioRepetido($premio);
+
+        $this->premios[$posicion]->rmCantidad($cantidad);
 
     }
 }

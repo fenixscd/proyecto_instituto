@@ -2,6 +2,7 @@
 
 namespace core\dominio;
 use core\dominio\PremioInterface;
+use core\dominio\PremioException;
 
 
 class Premio implements PremioInterface
@@ -56,6 +57,15 @@ class Premio implements PremioInterface
     public function addCantidad(int $cantidad)
     {
         $this->cantidad = $this->cantidad + $cantidad;
+        return $this;
+    }
+
+    public function rmCantidad(int $cantidad)
+    {
+        if ($cantidad<0){
+            throw new PremioException("No se pueden quitar números negativos");
+        }
+        $this->cantidad = $this->cantidad - $cantidad;
         return $this;
     }
 }
