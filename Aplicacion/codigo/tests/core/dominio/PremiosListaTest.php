@@ -82,8 +82,15 @@ class PremiosListaTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(3, $premiosLista->getNumeroTotalDePremios(),"rmPremio despues de borrar");
         $this->assertEquals(2, $premiosLista->getNumeroDeLineasDePremio(),"rmPremio despues de borrar");
-
     }
 
+    /**
+     * @expectedException core\dominio\PremioException
+     */
+    public function testPemiosLista_rmPremio_siLaCantidadEsMenorOIgualA0()
+    {
+
+        $premiosLista->rmPremio($premioBorrar, -1);
+    }
 
 }

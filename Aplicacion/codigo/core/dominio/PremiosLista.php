@@ -3,6 +3,7 @@
 namespace core\dominio;
 
 use core\dominio\Premio;
+use core\dominio\PremioException;
 
 class PremiosLista
 {
@@ -62,9 +63,14 @@ class PremiosLista
     /**
      * @param PremioInterface $premio
      * @param int $cantidad
+     * @throws PremioException
      */
     public function rmPremio(PremioInterface $premio, int $cantidad = 1)
     {
+        if ($cantidad<0){
+            throw new PremioException("La cantidad tiene que ser mayor que 0");
+        }
+
         $posicion = $this->getPremioRepetido($premio);
 
         $this->premios[$posicion]->rmCantidad($cantidad);
