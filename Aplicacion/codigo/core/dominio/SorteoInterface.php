@@ -18,7 +18,7 @@ interface SorteoInterface
      *
      * @return Usuario
      */
-    public function getUsuario();
+    public function getParticipantes();
 
     /**
      *
@@ -61,12 +61,7 @@ interface SorteoInterface
      * @param Usuario usuario
      * @return Sorteo
      */
-    public function setUsuario(Usuario $usuario);
 
-    /**
-     * @param String descripcion
-     * @return Usuario
-     */
     public function setDescripcion(string $descripcion);
 
     /**

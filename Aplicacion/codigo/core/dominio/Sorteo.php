@@ -11,7 +11,7 @@ class Sorteo implements SorteoInterface
 {
     private $idSorteo;
     private $nombreSorteo;
-    private $usuario;
+    private $participantes;
     private $descripcion;
     private $listaPremios;
     private $fechaInicio;
@@ -38,9 +38,9 @@ class Sorteo implements SorteoInterface
      *
      * @return Usuario
      */
-    public function getUsuario()
+    public function getParticipantes()
     {
-        return $this->usuario;
+        return $this->participantes;
     }
 
     /**
@@ -92,16 +92,6 @@ class Sorteo implements SorteoInterface
     public function setNombreSorteo(string $nombreSorteo)
     {
         $this->nombreSorteo = $nombreSorteo;
-        return $this;
-    }
-
-    /**
-     * @param Usuario usuario
-     * @return Sorteo
-     */
-    public function setUsuario(Usuario $usuario)
-    {
-        $this->usuario = $usuario;
         return $this;
     }
 
