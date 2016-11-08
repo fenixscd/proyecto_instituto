@@ -4,6 +4,7 @@ namespace core\dominio;
 
 
 use core\dominio\SorteoInterface;
+use core\dominio\SorteoParticipantesLista;
 use DateTime;
 
 
@@ -17,7 +18,10 @@ class Sorteo implements SorteoInterface
     private $fechaInicio;
     private $fechaFin;
 
-
+    public function __construct()
+    {
+        $this->participantesLista = new SorteoParticipantesLista();
+    }
     /**
      * @return int
      */
@@ -127,7 +131,11 @@ class Sorteo implements SorteoInterface
 
     public function addParticipante(UsuarioInterfaz $usuario)
     {
-
+        $this->participantesLista->addUsuario($usuario);
     }
 
+    public function getTotalParticipantes()
+    {
+        return $this->participantesLista->getTotalParticipantes();
+    }
 }
