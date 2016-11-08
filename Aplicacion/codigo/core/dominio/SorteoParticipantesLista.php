@@ -2,7 +2,7 @@
 
 namespace core\dominio;
 
-class SorteoParticipantes
+class SorteoParticipantesLista
 {
     private $participantes = array();
 
