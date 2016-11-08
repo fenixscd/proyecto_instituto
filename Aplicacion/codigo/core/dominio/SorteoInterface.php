@@ -53,7 +53,7 @@ interface SorteoInterface
 
     /**
      * @param string nombreSorteo
-     * @return Usuario
+     * @return Sorteo
      */
     public function setNombreSorteo(string $nombreSorteo);
 
@@ -66,13 +66,13 @@ interface SorteoInterface
 
     /**
      * @param string fechaInicio
-     * @return Usuario
+     * @return Sorteo
      */
     public function setFechaInicio(string $fechaInicio);
 
     /**
      * @param string fechaFin
-     * @return Usuario
+     * @return Sorteo
      */
     public function setFechaFin(string $fechaFin);
 }
