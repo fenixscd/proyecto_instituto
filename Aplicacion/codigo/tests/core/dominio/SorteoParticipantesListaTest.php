@@ -32,10 +32,12 @@ class UsuariosSorteos extends PHPUnit_Framework_TestCase
     {
         $SorteoParticipantesLista = new SorteoParticipantesLista();
         $usuario = new Usuario();
-        $usarioBuscar = new Usuario();
+        $usuario->setNombreUsuario("Manolo");
+        $usuarioBuscar = new Usuario();
+        $usuarioBuscar->setNombreUsuario("Pepe");
 
         $SorteoParticipantesLista->addUsuario($usuario);
 
-        $this->assertFalse($SorteoParticipantesLista->isParticipanteApuntado($usarioBuscar));
+        $this->assertFalse($SorteoParticipantesLista->isParticipanteApuntado($usuarioBuscar));
     }
 }

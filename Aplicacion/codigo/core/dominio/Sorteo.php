@@ -2,7 +2,7 @@
 
 namespace core\dominio;
 
-use core\dominio\Usuario;
+
 use core\dominio\SorteoInterface;
 use DateTime;
 
@@ -125,5 +125,9 @@ class Sorteo implements SorteoInterface
         return $this;
     }
 
+    public function addParticipante(UsuarioInterfaz $usuario)
+    {
+
+    }
 
 }
