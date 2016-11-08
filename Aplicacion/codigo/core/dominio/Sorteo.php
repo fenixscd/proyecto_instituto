@@ -131,6 +131,10 @@ class Sorteo implements SorteoInterface
 
     public function addParticipante(UsuarioInterfaz $usuario)
     {
+        $apuntado = $this->participantesLista->isParticipanteApuntado($usuario);
+        if ($apuntado){
+            throw new SorteoException("El usuario ya esta apuntado");
+        }
         $this->participantesLista->addUsuario($usuario);
     }
 

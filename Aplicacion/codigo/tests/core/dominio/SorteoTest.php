@@ -20,9 +20,24 @@ class SorteoTest extends PHPUnit_Framework_TestCase
         $sorteo = new Sorteo();
         $usuario = new Usuario();
         $usuario->setNombreUsuario("manolo");
-        echo "\nEntra en el test\n";
         $sorteo->addParticipante($usuario);
 
         $this->assertEquals(1, $sorteo->getTotalParticipantes());
+    }
+
+    /**
+     * @expectedException core\dominio\SorteoException
+     */
+    public function testAddUsuario_siElUsuarioYaEstaApuntado()
+    {
+        $sorteo = new Sorteo();
+        $usuario = new Usuario();
+        $usuarioRepetido = new Usuario();
+        $usuario->setNombreUsuario("manolo");
+        $usuarioRepetido->setNombreUsuario("manolo");
+
+        $sorteo->addParticipante($usuario);
+        $sorteo->addParticipante($usuarioRepetido);
+
     }
 }

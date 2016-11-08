@@ -50,8 +50,8 @@ class PremiosLista
     /**
      *
      * @param PremioInterface $premio
+     * @throws PremiosListaException
      * @return int
-     * PremiosListaException
      */
     private function buscarPosicionPremio(PremioInterface $premio)
     {
