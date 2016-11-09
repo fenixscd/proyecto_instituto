@@ -16,14 +16,17 @@ class SorteoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $sorteo->getTotalParticipantes());
     }
 
-    public function testAddUsuario_siElUsuarioNoEstaApuntado()
+    public function testAddUsuario_siElParticipanteNoEstaApuntado()
     {
         $usuario = new Usuario();
         $usuario->setNombreUsuario("manolo");
 
+        $participante = new Usuario();
+        $participante->setNombreUsuario("Participante");
+
         $sorteo = new Sorteo($usuario);
 
-        $sorteo->addParticipante($usuario);
+        $sorteo->addParticipante($participante);
 
         $this->assertEquals(1, $sorteo->getTotalParticipantes());
     }

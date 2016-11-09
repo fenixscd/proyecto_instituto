@@ -25,8 +25,6 @@ class Sorteo implements SorteoInterface
         $this->usuario = $usurio;
     }
 
-
-
     /**
      * @return int
      */
@@ -40,7 +38,7 @@ class Sorteo implements SorteoInterface
      */
     public function getNombreSorteo()
     {
-        return $this->getNombreSorteo();
+        return $this->nombreSorteo;
     }
 
     /**
@@ -158,7 +156,7 @@ class Sorteo implements SorteoInterface
         $creadorIgualParticipante = $creador === $participante;
 
         if ($creadorIgualParticipante){
-            throw new SorteoException("El usuario ya esta apuntado");
+            throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
         }
 
         $this->participantesLista->addUsuario($usuario);

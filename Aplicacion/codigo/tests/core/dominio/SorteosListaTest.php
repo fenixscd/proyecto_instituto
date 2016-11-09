@@ -5,6 +5,7 @@ namespace tests\core\dominio;
 use PHPUnit_Framework_TestCase;
 use core\dominio\SorteosLista;
 use core\dominio\Sorteo;
+use core\dominio\Usuario;
 
 class SorteosListaTest extends PHPUnit_Framework_TestCase
 {
@@ -12,30 +13,30 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
     protected $sorteoDos;
     protected $sorteoDuplicado;
 
-    public function setUp()
-    {
+//     public function setUp()
+//     {
 
 
-        $this->sorteo = $this->getMockBuilder('core\dominio\Sorteo')->getMock();
+//         $this->sorteo = $this->getMockBuilder('core\dominio\Sorteo')->getMock();
 
 
-        $this->sorteo->method('getIdSorteo')->willReturn(1);
-        $this->sorteo->method('getNombreSorteo')->willReturn('Sorteo_Uno');
-        //////////////////////////////////////////////////////////////////
+//         $this->sorteo->method('getIdSorteo')->willReturn(1);
+//         $this->sorteo->method('getNombreSorteo')->willReturn('Sorteo_Uno');
+//         //////////////////////////////////////////////////////////////////
 
-        $this->sorteoDos = $this->getMockBuilder(
-            'core\dominio\Sorteo')->getMock();
+//         $this->sorteoDos = $this->getMockBuilder(
+//             'core\dominio\Sorteo')->getMock();
 
-        $this->sorteoDos->method('getIdSorteo')->willReturn(2);
-        $this->sorteoDos->method('getNombreSorteo')->willReturn('Sorteo_dos');
-        //////////////////////////////////////////////////////////////////
+//         $this->sorteoDos->method('getIdSorteo')->willReturn(2);
+//         $this->sorteoDos->method('getNombreSorteo')->willReturn('Sorteo_dos');
+//         //////////////////////////////////////////////////////////////////
 
-         $this->sorteoDuplicado = $this->getMockBuilder(
-             'core\dominio\Sorteo')->getMock();
+//          $this->sorteoDuplicado = $this->getMockBuilder(
+//              'core\dominio\Sorteo')->getMock();
 
-         $this->sorteoDuplicado->method('getIdSorteo')->willReturn(1);
-        $this->sorteoDuplicado->method('getNombreSorteo')->willReturn('Duplicado');
-    }
+//          $this->sorteoDuplicado->method('getIdSorteo')->willReturn(1);
+//         $this->sorteoDuplicado->method('getNombreSorteo')->willReturn('Duplicado');
+//     }
 
     public function testSorteoLista_AlCrear_Sorteos0() {
         $sorteosLista = new SorteosLista();
@@ -43,10 +44,12 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $sorteosLista->countSorteos());
     }
 
-     public function testSorteosLista_addSorte_ComprobamosAñadeUnSorteo() {
+     public function testSorteosLista_addSorte_ComprobamosAnadeUnSorteo() {
          $sorteosLista = new SorteosLista();
+         $usuario = new Usuario();
+         $sorteo = new Sorteo($usuario);
 
-        $sorteosLista->addSorteo($this->sorteo);
-        $this->assertEquals(1, $sorteosLista->countSorteos());
+         $sorteosLista->addSorteo($sorteo);
+         $this->assertEquals(1, $sorteosLista->countSorteos());
     }
 }
