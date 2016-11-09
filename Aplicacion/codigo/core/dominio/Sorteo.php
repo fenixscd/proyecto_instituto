@@ -12,16 +12,21 @@ class Sorteo implements SorteoInterface
 {
     private $idSorteo;
     private $nombreSorteo;
+    private $usuario;
     private $participantesLista;
     private $descripcion;
     private $listaPremios;
     private $fechaInicio;
     private $fechaFin;
 
-    public function __construct()
+    public function __construct(UsuarioInterfaz $usurio)
     {
         $this->participantesLista = new SorteoParticipantesLista();
+        $this->usuario = $usurio;
     }
+
+
+
     /**
      * @return int
      */
@@ -77,6 +82,17 @@ class Sorteo implements SorteoInterface
     public function getFechaFin()
     {
         return $this->fechaFin;
+    }
+
+    public function setUsuario(UsuarioInterfaz $usuario)
+    {
+        $this->usuario = $usuario;
+        return $this;
+    }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 
     /**
@@ -135,6 +151,16 @@ class Sorteo implements SorteoInterface
         if ($apuntado){
             throw new SorteoException("El usuario ya esta apuntado");
         }
+
+        $creador = $this->usuario->getNombreUsuario();
+        $participante = $usuario->getNombreUsuario();
+
+        $creadorIgualParticipante = $creador === $participante;
+
+        if ($creadorIgualParticipante){
+            throw new SorteoException("El usuario ya esta apuntado");
+        }
+
         $this->participantesLista->addUsuario($usuario);
     }
 

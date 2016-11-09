@@ -75,4 +75,8 @@ interface SorteoInterface
      * @return Sorteo
      */
     public function setFechaFin(string $fechaFin);
+
+    public function setUsuario(UsuarioInterfaz $usuario);
+
+    public function getUsuario();
 }

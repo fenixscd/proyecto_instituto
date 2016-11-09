@@ -51,4 +51,5 @@ interface UsuarioInterfaz
      * @param mixed
      */
     public function __toString();
+
 }

@@ -11,15 +11,18 @@ class SorteoTest extends PHPUnit_Framework_TestCase
 
     public function testAddUsurio_siEstaVaciaALcrerLaLista()
     {
-        $sorteo = new Sorteo();
+        $usuario = new Usuario();
+        $sorteo = new Sorteo($usuario);
         $this->assertEquals(0, $sorteo->getTotalParticipantes());
     }
 
-    public function testAddUsuario_siElUsuarioNoEsaApuntado()
+    public function testAddUsuario_siElUsuarioNoEstaApuntado()
     {
-        $sorteo = new Sorteo();
         $usuario = new Usuario();
         $usuario->setNombreUsuario("manolo");
+
+        $sorteo = new Sorteo($usuario);
+
         $sorteo->addParticipante($usuario);
 
         $this->assertEquals(1, $sorteo->getTotalParticipantes());
@@ -28,16 +31,30 @@ class SorteoTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException core\dominio\SorteoException
      */
-    public function testAddUsuario_siElUsuarioYaEstaApuntado()
-    {
-        $sorteo = new Sorteo();
-        $usuario = new Usuario();
-        $usuarioRepetido = new Usuario();
-        $usuario->setNombreUsuario("manolo");
-        $usuarioRepetido->setNombreUsuario("manolo");
+//     public function testAddUsuario_siElUsuarioYaEstaApuntado()
+//     {
+//         $sorteo = new Sorteo();
+//         $usuario = new Usuario();
+//         $usuarioRepetido = new Usuario();
+//         $usuario->setNombreUsuario("manolo");
+//         $usuarioRepetido->setNombreUsuario("manolo");
 
-        $sorteo->addParticipante($usuario);
-        $sorteo->addParticipante($usuarioRepetido);
+//         $sorteo->addParticipante($usuario);
+//         $sorteo->addParticipante($usuarioRepetido);
 
-    }
+//     }
+
+    /**
+     * @expectedException core\dominio\SorteoException
+     */
+//     public function testAddUsuario_siCoincideElParticipanteConElCreador()
+//     {
+//         $sorteo = new Sorteo();
+//         $usuario = new Usuario();
+
+//         $usuario->setNombreUsuario("manolo");
+
+//         $sorteo->setUsuario($usuario);
+//         $sorteo->addParticipante($usuario);
+//     }
 }
