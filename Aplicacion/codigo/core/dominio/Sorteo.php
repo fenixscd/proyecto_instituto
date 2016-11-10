@@ -166,4 +166,12 @@ class Sorteo implements SorteoInterface
     {
         return $this->participantesLista->getTotalParticipantes();
     }
+
+    public function sorteoFinalizado()
+    {
+        $time = time();
+
+
+
+    }
 }

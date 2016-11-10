@@ -13,31 +13,6 @@ class SorteosListaTest extends PHPUnit_Framework_TestCase
     protected $sorteoDos;
     protected $sorteoDuplicado;
 
-//     public function setUp()
-//     {
-
-
-//         $this->sorteo = $this->getMockBuilder('core\dominio\Sorteo')->getMock();
-
-
-//         $this->sorteo->method('getIdSorteo')->willReturn(1);
-//         $this->sorteo->method('getNombreSorteo')->willReturn('Sorteo_Uno');
-//         //////////////////////////////////////////////////////////////////
-
-//         $this->sorteoDos = $this->getMockBuilder(
-//             'core\dominio\Sorteo')->getMock();
-
-//         $this->sorteoDos->method('getIdSorteo')->willReturn(2);
-//         $this->sorteoDos->method('getNombreSorteo')->willReturn('Sorteo_dos');
-//         //////////////////////////////////////////////////////////////////
-
-//          $this->sorteoDuplicado = $this->getMockBuilder(
-//              'core\dominio\Sorteo')->getMock();
-
-//          $this->sorteoDuplicado->method('getIdSorteo')->willReturn(1);
-//         $this->sorteoDuplicado->method('getNombreSorteo')->willReturn('Duplicado');
-//     }
-
     public function testSorteoLista_AlCrear_Sorteos0() {
         $sorteosLista = new SorteosLista();
 

@@ -34,30 +34,32 @@ class SorteoTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException core\dominio\SorteoException
      */
-//     public function testAddUsuario_siElUsuarioYaEstaApuntado()
-//     {
-//         $sorteo = new Sorteo();
-//         $usuario = new Usuario();
-//         $usuarioRepetido = new Usuario();
-//         $usuario->setNombreUsuario("manolo");
-//         $usuarioRepetido->setNombreUsuario("manolo");
+    public function testAddUsuario_siElUsuarioYaEstaApuntado()
+    {
+        $usuarioCreador = new Usuario();
+        $sorteo = new Sorteo($usuarioCreador);
+        $usuario = new Usuario();
+        $usuarioRepetido = new Usuario();
+        $usuario->setNombreUsuario("manolo");
+        $usuarioRepetido->setNombreUsuario("manolo");
 
-//         $sorteo->addParticipante($usuario);
-//         $sorteo->addParticipante($usuarioRepetido);
+        $sorteo->addParticipante($usuario);
+        $sorteo->addParticipante($usuarioRepetido);
 
-//     }
+    }
 
     /**
      * @expectedException core\dominio\SorteoException
      */
-//     public function testAddUsuario_siCoincideElParticipanteConElCreador()
-//     {
-//         $sorteo = new Sorteo();
-//         $usuario = new Usuario();
+    public function testAddUsuario_siCoincideElParticipanteConElCreador()
+    {
+        $usuarioCreador = new Usuario();
+        $sorteo = new Sorteo($usuarioCreador);
+        $usuario = new Usuario();
 
-//         $usuario->setNombreUsuario("manolo");
+        $usuario->setNombreUsuario("manolo");
 
-//         $sorteo->setUsuario($usuario);
-//         $sorteo->addParticipante($usuario);
-//     }
+        $sorteo->setUsuario($usuario);
+        $sorteo->addParticipante($usuario);
+    }
 }
