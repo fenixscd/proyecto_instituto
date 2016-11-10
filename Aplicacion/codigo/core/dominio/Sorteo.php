@@ -6,6 +6,7 @@ namespace core\dominio;
 use core\dominio\SorteoInterface;
 use core\dominio\SorteoParticipantesLista;
 use DateTime;
+use phpDocumentor\Reflection\Types\This;
 
 
 class Sorteo implements SorteoInterface
@@ -19,10 +20,13 @@ class Sorteo implements SorteoInterface
     private $fechaInicio;
     private $fechaFin;
 
-    public function __construct(UsuarioInterfaz $usurio)
+    public function __construct(UsuarioInterfaz $usuario, $fechaInicio=null, $fechaFin=null)
     {
         $this->participantesLista = new SorteoParticipantesLista();
-        $this->usuario = $usurio;
+        $this->usuario = $usuario;
+        if ($fechaInicio !== null) $this->setFechaInicio($fechaInicio);
+        if ($fechaFin !== null) $this->setFechaFin($fechaFin);
+
     }
 
     /**
@@ -66,7 +70,7 @@ class Sorteo implements SorteoInterface
 
     /**
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getFechaInicio()
     {
@@ -75,7 +79,7 @@ class Sorteo implements SorteoInterface
 
     /**
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getFechaFin()
     {
@@ -129,7 +133,7 @@ class Sorteo implements SorteoInterface
      */
     public function setFechaInicio(string $fechaInicio)
     {
-        $this->fechaInicio = $fechaInicio;
+        $this->fechaInicio = date_create($fechaInicio);
         return $this;
     }
 
@@ -139,27 +143,38 @@ class Sorteo implements SorteoInterface
      */
     public function setFechaFin(string $fechaFin)
     {
-        $this->fechaFin = $fechaFin;
+        $this->fechaFin = date_create($fechaFin);
         return $this;
     }
 
-    public function addParticipante(UsuarioInterfaz $usuario)
+    public function addParticipante(UsuarioInterfaz $participante, DateTime $fechaApuntarse=null)
     {
-        $apuntado = $this->participantesLista->isParticipanteApuntado($usuario);
+        $apuntado = $this->participantesLista->isParticipanteApuntado($participante);
         if ($apuntado){
             throw new SorteoException("El usuario ya esta apuntado");
         }
 
-        $creador = $this->usuario->getNombreUsuario();
-        $participante = $usuario->getNombreUsuario();
-
-        $creadorIgualParticipante = $creador === $participante;
-
-        if ($creadorIgualParticipante){
+        if ($this->isCreadorIgualParticipante($participante)){
             throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
         }
 
-        $this->participantesLista->addUsuario($usuario);
+        if (!$this->isFechaInicioAsignada()){
+            throw new SorteoException("El sorteo todavia no tiene una fecha de inicio asignada");
+        }
+
+        if(!$this->isFechaFinAsignada()){
+            throw new SorteoException("El sorteo todavia no tiene una fecha de finalizacion asignada");
+        }
+
+        if(!$this->isSorteoIniciado($fechaApuntarse)){
+            throw new SorteoException("Todavia no se ha iniciado el sorteo");
+        }
+
+        if(!$this->isSorteoFinalizado($fechaApuntarse)){
+            throw new SorteoException("El sorteo ha finalizado");
+        }
+
+        $this->participantesLista->addUsuario($participante);
     }
 
     public function getTotalParticipantes()
@@ -167,11 +182,34 @@ class Sorteo implements SorteoInterface
         return $this->participantesLista->getTotalParticipantes();
     }
 
-    public function sorteoFinalizado()
+    private function isSorteoIniciado(DateTime $fechaApuntarse)
     {
-        $time = time();
+        return ($this->fechaInicio < $fechaApuntarse);
+    }
+
+    private function isSorteoFinalizado(DateTime $fechaApuntarse)
+    {
+        return ($this->fechaFin > $fechaApuntarse);
+    }
 
 
+    private function isFechaInicioAsignada()
+    {
+        if ($this->fechaInicio == null) return false;
+        else return true;
+    }
 
+    private function isFechaFinAsignada()
+    {
+        if($this->fechaFin == null) return false;
+        else return true;
+    }
+
+    private function isCreadorIgualParticipante(UsuarioInterfaz $participante)
+    {
+        $creador = $this->usuario->getNombreUsuario();
+        $part = $participante->getNombreUsuario();
+
+        return $creador === $part;
     }
 }

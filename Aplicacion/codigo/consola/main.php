@@ -12,7 +12,8 @@ main();
 
 function main ()
 {
-    testAddUsuario_siElUsuarioNoEsaApuntado();
+    //testAddUsuario_siElUsuarioNoEsaApuntado();
+    fecha();
 }
 
 // function probandoPremiosLista()
@@ -43,5 +44,17 @@ function main ()
 
     echo "\nAl final son ";
     echo $sorteo->getTotalParticipantes();
+}
+
+function fecha()
+{
+    $usuario = new Usuario();
+    $sorteo = new Sorteo($usuario, null,'2013-06-19 18:25');
+
+    $fechaApuntarse = date_create('2013-06-19 18:26');
+
+    if ($sorteo->isSorteoFinalizado($fechaApuntarse)) echo "El sorteo NO ha finalizado";
+    else echo "El sorteo ha finalizado";
+
 }
 
