@@ -5,47 +5,50 @@ namespace tests\core\dominio;
 use PHPUnit_Framework_TestCase;
 use core\dominio\Sorteo;
 use core\dominio\Usuario;
+use core\dominio\Participante;
 
 class SorteoTest extends PHPUnit_Framework_TestCase
 {
+    protected $usuario;
+    protected $sorteo;
+    protected $usuarioParticipante;
 
-//     public function testAddUsurio_siEstaVaciaALcrerLaLista()
-//     {
-//         $usuario = new Usuario();
-//         $sorteo = new Sorteo($usuario);
-//         $this->assertEquals(0, $sorteo->getTotalParticipantes());
-//     }
+    public function setUp()
+    {
+        $this->usuario = new Usuario();
+        $this->usuarioParticipante = new Usuario();
+        $this->sorteo = new Sorteo($this->usuario);
+    }
+
+    public function testAddUsurio_siEstaVaciaALcrerLaLista()
+    {
+        $this->assertEquals(0, $this->sorteo->getTotalParticipantes());
+    }
 
     public function testAddUsuario_siElParticipanteNoEstaApuntado()
     {
 
-        $usuario = new Usuario();
-        $usuario->setNombreUsuario("manolo");
+        $this->usuario->setNombreUsuario("Manolo");
+        $this->usuarioParticipante->setNombreUsuario("Carlos");
 
-        $participante = new Usuario();
-        $participante->setNombreUsuario("Participante");
+        $participante = new Participante($this->usuarioParticipante);
 
-        $sorteo = new Sorteo($usuario);
-        $sorteo->addParticipante($participante);
+        $this->sorteo->addParticipante($participante);
 
-        $this->assertEquals(1, $sorteo->getTotalParticipantes());
+        $this->assertEquals(1, $this->sorteo->getTotalParticipantes());
     }
 
     /**
      * @expectedException core\dominio\SorteoException
      */
-//     public function testAddParticipante_siElUsuarioYaEstaApuntado()
-//     {
-//         $usuarioCreador = new Usuario();
-//         $sorteo = new Sorteo($usuarioCreador);
-//         $usuario = new Usuario();
-//         $usuarioRepetido = new Usuario();
-//         $usuario->setNombreUsuario("manolo");
-//         $usuarioRepetido->setNombreUsuario("manolo");
+    public function testAddParticipante_siElUsuarioYaEstaApuntado()
+    {
+        $this->usuario->setNombreUsuario("Manolo");
 
-//         $sorteo->addParticipante($usuario);
-//         $sorteo->addParticipante($usuarioRepetido);
-//     }
+
+        $sorteo->addParticipante($usuario);
+        $sorteo->addParticipante($usuarioRepetido);
+    }
 
     /**
      * @expectedException core\dominio\SorteoException

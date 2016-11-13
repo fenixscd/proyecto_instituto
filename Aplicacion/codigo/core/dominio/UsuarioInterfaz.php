@@ -52,4 +52,15 @@ interface UsuarioInterfaz
      */
     public function __toString();
 
+    /**
+     * @param UsuarioInterfaz $usuario
+     * @return boolean
+     */
+    public function isElMismo(UsuarioInterfaz $usuario);
+
+    /**
+     * @return boolean
+     */
+    public function isNombreEsNuloOVacio();
+
 }

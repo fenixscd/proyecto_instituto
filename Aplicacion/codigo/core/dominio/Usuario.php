@@ -82,6 +82,24 @@ class Usuario implements UsuarioInterfaz
         return $this;
     }
 
+    /**
+     * @param UsuarioInterfaz $usuario
+     * @return boolean
+     */
+    public function isElMismo(UsuarioInterfaz $usuario)
+    {
+        return $this->nombreUsuario == $usuario->getNombreUsuario();
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isNombreEsNuloOVacio()
+    {
+        if($this->nombreUsuario == false) return false;
+        else return true;
+    }
+
     public function __toString()
     {
         $idUsuario = $this->idUsuario;

@@ -5,6 +5,7 @@ namespace core\dominio;
 
 use core\dominio\SorteoInterface;
 use core\dominio\SorteoParticipantesLista;
+use core\dominio\ParticipantesLista;
 use DateTime;
 use phpDocumentor\Reflection\Types\This;
 
@@ -20,9 +21,11 @@ class Sorteo implements SorteoInterface
     private $fechaInicio;
     private $fechaFin;
 
-    public function __construct(UsuarioInterfaz $usuario, $fechaInicio=null, $fechaFin=null)
+    public function __construct(UsuarioInterfaz $usuario,
+                                                $fechaInicio=null,
+                                                $fechaFin=null)
     {
-        $this->participantesLista = new SorteoParticipantesLista();
+        $this->participantesLista = new ParticipantesLista();
         $this->usuario = $usuario;
         if ($fechaInicio !== null) $this->setFechaInicio($fechaInicio);
         if ($fechaFin !== null) $this->setFechaFin($fechaFin);
@@ -147,34 +150,34 @@ class Sorteo implements SorteoInterface
         return $this;
     }
 
-    public function addParticipante(UsuarioInterfaz $participante, DateTime $fechaApuntarse=null)
+    public function addParticipante(ParticipanteInterface $participante)
     {
-        $apuntado = $this->participantesLista->isParticipanteApuntado($participante);
-        if ($apuntado){
-            throw new SorteoException("El usuario ya esta apuntado");
-        }
+//         $apuntado = $this->participantesLista->isParticipanteApuntado($participante);
+//         if ($apuntado){
+//             throw new SorteoException("El usuario ya esta apuntado");
+//         }
 
-        if ($this->isCreadorIgualParticipante($participante)){
-            throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
-        }
+//         if ($this->isCreadorIgualParticipante($participante)){
+//             throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
+//         }
 
-        if (!$this->isFechaInicioAsignada()){
-            throw new SorteoException("El sorteo todavia no tiene una fecha de inicio asignada");
-        }
+//         if (!$this->isFechaInicioAsignada()){
+//             throw new SorteoException("El sorteo todavia no tiene una fecha de inicio asignada");
+//         }
 
-        if(!$this->isFechaFinAsignada()){
-            throw new SorteoException("El sorteo todavia no tiene una fecha de finalizacion asignada");
-        }
+//         if(!$this->isFechaFinAsignada()){
+//             throw new SorteoException("El sorteo todavia no tiene una fecha de finalizacion asignada");
+//         }
 
-        if(!$this->isSorteoIniciado($fechaApuntarse)){
-            throw new SorteoException("Todavia no se ha iniciado el sorteo");
-        }
+//         if(!$this->isSorteoIniciado($fechaApuntarse)){
+//             throw new SorteoException("Todavia no se ha iniciado el sorteo");
+//         }
 
-        if(!$this->isSorteoFinalizado($fechaApuntarse)){
-            throw new SorteoException("El sorteo ha finalizado");
-        }
+//         if(!$this->isSorteoFinalizado($fechaApuntarse)){
+//             throw new SorteoException("El sorteo ha finalizado");
+//         }
 
-        $this->participantesLista->addUsuario($participante);
+        $this->participantesLista->addParticipante($participante);
     }
 
     public function getTotalParticipantes()
