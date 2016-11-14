@@ -29,7 +29,6 @@ class Sorteo implements SorteoInterface
         $this->usuario = $usuario;
         if ($fechaInicio !== null) $this->setFechaInicio($fechaInicio);
         if ($fechaFin !== null) $this->setFechaFin($fechaFin);
-
     }
 
     /**
@@ -136,7 +135,7 @@ class Sorteo implements SorteoInterface
      */
     public function setFechaInicio(string $fechaInicio)
     {
-        $this->fechaInicio = date_create($fechaInicio);
+        $this->fechaInicio = new \DateTime($fechaInicio);
         return $this;
     }
 
@@ -146,35 +145,40 @@ class Sorteo implements SorteoInterface
      */
     public function setFechaFin(string $fechaFin)
     {
-        $this->fechaFin = date_create($fechaFin);
+        $this->fechaFin = new \DateTime($fechaFin);
         return $this;
     }
 
     public function addParticipante(ParticipanteInterface $participante)
     {
         $apuntado = $this->participantesLista->isParticipanteApuntado($participante);
+        $fechaInscripcion = $participante->getFechaInscripcion();
+
+        echo "\nFecha de inicio; " .date_format($this->fechaInicio, 'Y-m-d H:i:s');
+        echo "\nFecha de fin " .date_format($this->fechaFin, 'Y-m-d H:i:s');
+
+
         if ($apuntado){
             throw new SorteoException("El usuario ya esta apuntado");
         }
-
 
         if ($this->isCreadorIgualParticipante($participante)){
             throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
         }
 
-//         if (!$this->isFechaInicioAsignada()){
-//             throw new SorteoException("El sorteo todavia no tiene una fecha de inicio asignada");
-//         }
+        if (!$this->isFechaInicioAsignada()){
+            throw new SorteoException("El sorteo todavia no tiene una fecha de inicio asignada");
+        }
 
-//         if(!$this->isFechaFinAsignada()){
-//             throw new SorteoException("El sorteo todavia no tiene una fecha de finalizacion asignada");
-//         }
+        if(!$this->isFechaFinAsignada()){
+            throw new SorteoException("El sorteo todavia no tiene una fecha de finalizacion asignada");
+        }
 
 //         if(!$this->isSorteoIniciado($fechaApuntarse)){
 //             throw new SorteoException("Todavia no se ha iniciado el sorteo");
 //         }
 
-//         if(!$this->isSorteoFinalizado($fechaApuntarse)){
+//         if(!$this->isSorteoFinalizado($fechaInscripcion)){
 //             throw new SorteoException("El sorteo ha finalizado");
 //         }
 
@@ -194,6 +198,11 @@ class Sorteo implements SorteoInterface
     private function isSorteoFinalizado(DateTime $fechaApuntarse)
     {
         return ($this->fechaFin > $fechaApuntarse);
+    }
+
+    private function isSorteoActivo(DateTime $fechaApuntarse)
+    {
+        return $this->isSorteoFinalizado($fechaApuntarse) && $this->isSorteoIniciado($fechaApuntarse);
     }
 
 

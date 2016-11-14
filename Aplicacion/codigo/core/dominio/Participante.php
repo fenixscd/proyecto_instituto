@@ -3,6 +3,7 @@
 namespace core\dominio;
 use core\dominio\UsuarioInterfaz;
 use core\dominio\ParticipanteInterface;
+use DateTime;
 
 class Participante implements ParticipanteInterface
 {
@@ -17,7 +18,7 @@ class Participante implements ParticipanteInterface
     public function __construct(UsuarioInterfaz $usuario=null, $fechaInscripcion=null)
     {
         $this->usuario = $usuario;
-        $this->fechaInscripcion = $fechaInscripcion;
+        $this->fechaInscripcion = new DateTime($fechaInscripcion);
     }
 
     /**

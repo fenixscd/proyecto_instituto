@@ -19,6 +19,8 @@ class SorteoTest extends PHPUnit_Framework_TestCase
         $this->usuarioParticipante = new Usuario();
         $this->sorteo = new Sorteo($this->usuario);
         $this->usuario->setNombreUsuario("Franki");
+        $this->sorteo->setFechaInicio('02/31/2011');
+        $this->sorteo->setFechaFin('05/31/2011');
     }
 
     public function testAddUsurio_siEstaVaciaALcrerLaLista()
@@ -59,18 +61,25 @@ class SorteoTest extends PHPUnit_Framework_TestCase
         $this->sorteo->addParticipante($participante);
     }
 
-//     public function testAddParticipante_elSorteoEstaActivo()
-//     {
+    public function testAddParticipante_elSorteoEstaActivo()
+    {
+        $this->sorteo->setFechaInicio("5/10/2016");
+        $this->sorteo->setFechaFin("6/10/2016");
+        $participante = new Participante($this->usuarioParticipante, "6/10/2016");
+        $this->sorteo->addParticipante($participante);
 
-//         $this->sorteo->isSorteoActivo();
-//     }
+        $this->assertEquals(1, $this->sorteo->getTotalParticipantes());
+    }
+
+
 
     /**
      * @expectedException core\dominio\SorteoException
      */
 //     public function testAddParticipante_elSorteoHAFinalizado(){
-//         $usuarioCreador = new Usuario();
-//         $sorteo = new Sorteo($usuarioCreador);
-//         $usuario = new Usuario();
+//         $this->sorteo->setFechaInicio("5/10/2016");
+//         $this->sorteo->setFechaFin("25/10/2016");
+//         $participante = new Participante($this->usuarioParticipante, "26/10/2016");
+//         $this->sorteo->addParticipante($participante);
 //     }
 }
