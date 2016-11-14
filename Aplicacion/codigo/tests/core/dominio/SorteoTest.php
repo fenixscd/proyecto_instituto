@@ -70,16 +70,4 @@ class SorteoTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $this->sorteo->getTotalParticipantes());
     }
-
-
-
-    /**
-     * @expectedException core\dominio\SorteoException
-     */
-//     public function testAddParticipante_elSorteoHAFinalizado(){
-//         $this->sorteo->setFechaInicio("5/10/2016");
-//         $this->sorteo->setFechaFin("25/10/2016");
-//         $participante = new Participante($this->usuarioParticipante, "26/10/2016");
-//         $this->sorteo->addParticipante($participante);
-//     }
 }
