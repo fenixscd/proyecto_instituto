@@ -27,4 +27,10 @@ interface ParticipanteInterface
      * @return ParticipanteInterface
      */
     public function setFechaInscripcion($fechaInscripcion);
+
+    /**
+     * @param ParticipanteInterface $participante
+     * @return bool
+     */
+    public function isElMismo(ParticipanteInterface $participante);
 }

@@ -40,37 +40,29 @@ class SorteoTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException core\dominio\SorteoException
      */
-//     public function testAddParticipante_siElUsuarioYaEstaApuntado()
-//     {
-//         $this->usuarioParticipante->setNombreUsuario("Pepe");
+    public function testAddParticipante_siElUsuarioYaEstaApuntado()
+    {
+        $this->usuarioParticipante->setNombreUsuario("Pepe");
 
-//         $participante = new Participante($this->usuarioParticipante);
+        $participante = new Participante($this->usuarioParticipante);
 
-//         $this->sorteo->addParticipante($participante);
-//         $this->sorteo->addParticipante($participante);
-//     }
+        $this->sorteo->addParticipante($participante);
+        $this->sorteo->addParticipante($participante);
+    }
 
     /**
      * @expectedException core\dominio\SorteoException
      */
-//     public function testAddParticipante_siCoincideElParticipanteConElCreador()
-//     {
-//         $usuarioCreador = new Usuario();
-//         $sorteo = new Sorteo($usuarioCreador);
-//         $usuario = new Usuario();
-
-//         $usuario->setNombreUsuario("manolo");
-
-//         $sorteo->setUsuario($usuario);
-//         $sorteo->addParticipante($usuario);
-//     }
+    public function testAddParticipante_siCoincideElParticipanteConElCreador()
+    {
+        $participante = new Participante($this->usuario);
+        $this->sorteo->addParticipante($participante);
+    }
 
 //     public function testAddParticipante_elSorteoEstaActivo()
 //     {
-//         $usuarioCreador = new Usuario();
-//         $sorteo = new Sorteo($usuarioCreador);
 
-//         $sorteo->isSorteoActivo();
+//         $this->sorteo->isSorteoActivo();
 //     }
 
     /**

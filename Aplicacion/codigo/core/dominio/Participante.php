@@ -55,4 +55,11 @@ class Participante implements ParticipanteInterface
         $this->fechaInscripcion = $fechaInscripcion;
         return $this;
     }
+
+    public function isElMismo(ParticipanteInterface $participante)
+    {
+        $usuarioParticipante = $participante->getUsuario();
+
+        return $this->usuario->isElMismo($usuarioParticipante);
+    }
 }

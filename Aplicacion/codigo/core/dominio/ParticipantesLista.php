@@ -21,10 +21,11 @@ class ParticipantesLista
 
     public function isParticipanteApuntado(ParticipanteInterface $participante)
     {
-        $usuarioParticipante = $participante->getUsuario();
-
         foreach ($this->participantes as $participanteLista){
-            if ($participanteLista->isElMismo($usuarioParticipante)) return true;
+
+            if ($participanteLista->isElMismo($participante)){
+                return true;
+            }
         }
         return false;
     }

@@ -153,17 +153,14 @@ class Sorteo implements SorteoInterface
     public function addParticipante(ParticipanteInterface $participante)
     {
         $apuntado = $this->participantesLista->isParticipanteApuntado($participante);
-//         $apuntado = $this->participantesLista->isParticipanteApuntado($participante);
-//         if ($apuntado){
-//             throw new SorteoException("El usuario ya esta apuntado");
-//         }
+        if ($apuntado){
+            throw new SorteoException("El usuario ya esta apuntado");
+        }
 
 
-
-
-//         if ($this->isCreadorIgualParticipante($participante)){
-//             throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
-//         }
+        if ($this->isCreadorIgualParticipante($participante)){
+            throw new SorteoException("El usuario que ha creado el sorteo no se puede apunatar");
+        }
 
 //         if (!$this->isFechaInicioAsignada()){
 //             throw new SorteoException("El sorteo todavia no tiene una fecha de inicio asignada");
@@ -212,10 +209,11 @@ class Sorteo implements SorteoInterface
         else return true;
     }
 
-    private function isCreadorIgualParticipante(UsuarioInterfaz $participante)
+    private function isCreadorIgualParticipante(ParticipanteInterface $participante)
     {
         $creador = $this->usuario->getNombreUsuario();
-        $part = $participante->getNombreUsuario();
+        $part = $participante->getUsuario();
+        $part = $part->getNombreUsuario();
 
         return $creador === $part;
     }
