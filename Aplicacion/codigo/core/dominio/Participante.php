@@ -25,7 +25,7 @@ class Participante implements ParticipanteInterface
      */
     public function getUsuario()
     {
-       return $this->$usuario;
+       return $this->usuario;
     }
 
     /**

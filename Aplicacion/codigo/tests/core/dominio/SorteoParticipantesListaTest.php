@@ -18,7 +18,7 @@ class UsuariosSorteos extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $SorteoParticipantesLista->getTotalParticipantes());
     }
 
-    public function testSorteoParticipanteLista_isParticipanteApuntadoExiste()
+    public function testSorteoParticipanteLista_isParticipanteYaEstaApuntado()
     {
         $SorteoParticipantesLista = new SorteoParticipantesLista();
         $usuario = new Usuario();

@@ -18,6 +18,7 @@ class SorteoTest extends PHPUnit_Framework_TestCase
         $this->usuario = new Usuario();
         $this->usuarioParticipante = new Usuario();
         $this->sorteo = new Sorteo($this->usuario);
+        $this->usuario->setNombreUsuario("Franki");
     }
 
     public function testAddUsurio_siEstaVaciaALcrerLaLista()
@@ -28,27 +29,26 @@ class SorteoTest extends PHPUnit_Framework_TestCase
     public function testAddUsuario_siElParticipanteNoEstaApuntado()
     {
 
-        $this->usuario->setNombreUsuario("Manolo");
         $this->usuarioParticipante->setNombreUsuario("Carlos");
 
         $participante = new Participante($this->usuarioParticipante);
 
-        $this->sorteo->addParticipante($participante);
-
-        $this->assertEquals(1, $this->sorteo->getTotalParticipantes());
+         $this->sorteo->addParticipante($participante);
+         $this->assertEquals(1, $this->sorteo->getTotalParticipantes());
     }
 
     /**
      * @expectedException core\dominio\SorteoException
      */
-    public function testAddParticipante_siElUsuarioYaEstaApuntado()
-    {
-        $this->usuario->setNombreUsuario("Manolo");
+//     public function testAddParticipante_siElUsuarioYaEstaApuntado()
+//     {
+//         $this->usuarioParticipante->setNombreUsuario("Pepe");
 
+//         $participante = new Participante($this->usuarioParticipante);
 
-        $sorteo->addParticipante($usuario);
-        $sorteo->addParticipante($usuarioRepetido);
-    }
+//         $this->sorteo->addParticipante($participante);
+//         $this->sorteo->addParticipante($participante);
+//     }
 
     /**
      * @expectedException core\dominio\SorteoException
