@@ -11,7 +11,7 @@ class Usuario implements UsuarioInterfaz
     private $password;
 
     /**
-     * @return string
+     * @return int
      */
     public function getIdUsuario()
     {
@@ -22,7 +22,7 @@ class Usuario implements UsuarioInterfaz
      * @param mixed $idUsuario
      * @return Usuario
      */
-    public function setIdUsuario($idUsuario)
+    public function setIdUsuario(int $idUsuario)
     {
         $this->idUsuario = $idUsuario;
         return $this;
@@ -37,17 +37,17 @@ class Usuario implements UsuarioInterfaz
     }
 
     /**
-     * @param tring $nombreUsuario
+     * @param string $nombreUsuario
      * @return Usuario
      */
-    public function setNombreUsuario($nombreUsuario)
+    public function setNombreUsuario(string $nombreUsuario)
     {
         $this->nombreUsuario = $nombreUsuario;
         return $this;
     }
 
     /**
-     * @return tring
+     * @return string
      */
     public function getEmail()
     {
@@ -58,7 +58,7 @@ class Usuario implements UsuarioInterfaz
      * @param string $email
      * @return Usuario
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
         return $this;
@@ -76,7 +76,7 @@ class Usuario implements UsuarioInterfaz
      * @param string $password
      * @return Usuario
      */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
         return $this;
@@ -100,6 +100,9 @@ class Usuario implements UsuarioInterfaz
         else return true;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         $idUsuario = $this->idUsuario;
