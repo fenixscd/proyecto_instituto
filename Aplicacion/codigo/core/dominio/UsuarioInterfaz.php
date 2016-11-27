@@ -10,10 +10,10 @@ interface UsuarioInterfaz
     public function getIdUsuario();
 
     /**
-     * @param mixed $idUsuario
+     * @param int $idUsuario
      * @return Usuario
      */
-    public function setIdUsuario($idUsuario);
+    public function setIdUsuario(int $idUsuario);
 
     /**
      * @return mixed
@@ -21,10 +21,10 @@ interface UsuarioInterfaz
     public function getNombreUsuario();
 
     /**
-     * @param mixed $nombreUsuario
+     * @param string $nombreUsuario
      * @return Usuario
      */
-    public function setNombreUsuario($nombreUsuario);
+    public function setNombreUsuario(string $nombreUsuario);
 
     /**
      * @return mixed
@@ -32,23 +32,23 @@ interface UsuarioInterfaz
     public function getEmail();
 
     /**
-     * @param mixed $email
+     * @param string $email
      * @return Usuario
      */
-    public function setEmail($email);
+    public function setEmail(string $email);
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPassword();
     /**
-     * @param mixed $password
+     * @param string $password
      * @return Usuario
      */
-    public function setPassword($password);
+    public function setPassword(string $password);
 
     /**
-     * @param mixed
+     * @param string
      */
     public function __toString();
 
