@@ -4,8 +4,18 @@ namespace aplicacion\puertos\repositorios;
 
 use core\dominio\UsuarioInterfaz;
 
-interface UsuarioRepositorioInterfaz
+interface UsuarioRepositorioInterface
 {
+    /**
+     *
+     * @param int $idUsuario
+     * @return UsuarioInterfaz
+     */
     public function getUsuario(int $idUsuario);
+
+    /**
+     * @param UsuarioInterfaz $usuario
+     * @return boolean
+     */
     public function save(UsuarioInterfaz $usuario);
 }
