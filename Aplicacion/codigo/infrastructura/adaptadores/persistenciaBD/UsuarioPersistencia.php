@@ -2,10 +2,15 @@
 
 namespace infrastructura\adaptadores\persistenciaBD;
 
-use aplicacion\puertos\repositorios\UsuarioRepositorioInterface;
+//use aplicacion\puertos\repositorios\UsuarioRepositorioInterface;
 
-class UsuarioPersistencia implements UsuarioRepositorioInterface
+class UsuarioPersistencia //implements UsuarioRepositorioInterface
 {
+    private $conexion;
+
+    public function __construct(){
+
+    }
 
     /**
      *
@@ -14,7 +19,27 @@ class UsuarioPersistencia implements UsuarioRepositorioInterface
      */
     public function getUsuario(int $idUsuario)
     {
+        $conexion = new Conexion();
+        $consulta = "SELECT * FROM Usuarios;";
 
+        $conexion->getConexion();
+
+        /*
+         * Guardamos el resultado que devuelve MySQL
+         */
+        //$resultado = $conexion->consulta($consulta);
+
+
+
+
+
+
+        //printf($resultado["nombreUsuario"]);
+
+//         printf($mysqli->affected_rows." Filas afectadas");
+
+//         $resultado->free();
+//         $mysqli->close();
     }
 
     /**
@@ -25,4 +50,5 @@ class UsuarioPersistencia implements UsuarioRepositorioInterface
     {
 
     }
+
 }

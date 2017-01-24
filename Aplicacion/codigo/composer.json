@@ -9,7 +9,8 @@
         "psr-4": {
             "web\\": "web",
             "core\\": "core",
-            "tests\\": "tests"
+            "tests\\": "tests",
+            "infrastructura\\":"infrastructura"
         }
   },
   "config": {

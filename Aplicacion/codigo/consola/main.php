@@ -2,10 +2,13 @@
 
 include_once '../vendor/autoload.php';
 
-//use core\dominio\Premio;
+use core\dominio\Premio;
 //use core\dominio\PremiosLista;
 use core\dominio\Sorteo;
 use core\dominio\Usuario;
+use infrastructura\adaptadores\persistenciaBD\Conexion;
+use infrastructura\adaptadores\persistenciaBD\UsuarioPersistencia;
+
 //use core\dominio\PremiosLista;
 
 main();
@@ -13,7 +16,14 @@ main();
 function main ()
 {
     //testAddUsuario_siElUsuarioNoEsaApuntado();
-    fecha();
+    //fecha();
+
+    //$conexion = new Conexion();
+
+    $usuario = new UsuarioPersistencia();
+    $reultado = $usuario->getUsuario(1);
+
+
 }
 
 // function probandoPremiosLista()
@@ -55,6 +65,13 @@ function fecha()
 
     if ($sorteo->isSorteoFinalizado($fechaApuntarse)) echo "El sorteo NO ha finalizado";
     else echo "El sorteo ha finalizado";
+
+}
+
+function pruebaPersistencia(){
+
+
+    //$usuario = new UsuarioPersistencia();
 
 }
 
